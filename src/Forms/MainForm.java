@@ -5,6 +5,11 @@
  */
 package Forms;
 
+import com.sun.awt.AWTUtilities;
+import java.awt.Shape;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author luis
@@ -16,6 +21,18 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+        
+        AWTUtilities.setWindowOpaque(this, false);
+        
+        // Venta centrada al iniciar
+        this.setLocationRelativeTo(null);
+        
+        // Redondear bordes de ventana
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 3, 3);
+        AWTUtilities.setWindowShape(this, forma);
+        
+        // Asignar icono 
+        setIconImage(new ImageIcon(getClass().getResource("/Assets/Icons/icono.png")).getImage());
     }
 
     /**
@@ -27,21 +44,161 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg_container = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        btn_info = new javax.swing.JButton();
+        btn_min = new javax.swing.JButton();
+        btn_close = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Conta Soft");
+        setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+
+        bg_container.setBackground(new java.awt.Color(255, 255, 255));
+        bg_container.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        bg_container.setForeground(new java.awt.Color(153, 153, 153));
+
+        btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_info.png"))); // NOI18N
+        btn_info.setBorderPainted(false);
+        btn_info.setContentAreaFilled(false);
+        btn_info.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_infohover.png"))); // NOI18N
+
+        btn_min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min.png"))); // NOI18N
+        btn_min.setBorderPainted(false);
+        btn_min.setContentAreaFilled(false);
+        btn_min.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_min.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_min.setName(""); // NOI18N
+        btn_min.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min_hover.png"))); // NOI18N
+        btn_min.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_minActionPerformed(evt);
+            }
+        });
+
+        btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_close.png"))); // NOI18N
+        btn_close.setBorderPainted(false);
+        btn_close.setContentAreaFilled(false);
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_close.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_close_hover.png"))); // NOI18N
+        btn_close.setVerifyInputWhenFocusTarget(false);
+        btn_close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_closeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btn_info, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_min, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_close)
+                    .addComponent(btn_min)
+                    .addComponent(btn_info))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/icono.png"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 48)); // NOI18N
+        jLabel2.setText("Conta Soft");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_start.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_starthover.png"))); // NOI18N
+
+        javax.swing.GroupLayout bg_containerLayout = new javax.swing.GroupLayout(bg_container);
+        bg_container.setLayout(bg_containerLayout);
+        bg_containerLayout.setHorizontalGroup(
+            bg_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bg_containerLayout.createSequentialGroup()
+                .addGroup(bg_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_containerLayout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addGroup(bg_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))
+                    .addGroup(bg_containerLayout.createSequentialGroup()
+                        .addGap(386, 386, 386)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(355, Short.MAX_VALUE))
+        );
+        bg_containerLayout.setVerticalGroup(
+            bg_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_containerLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addComponent(bg_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addComponent(bg_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    int x , y ;
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_formMouseDragged
+
+    private void btn_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_closeActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btn_closeActionPerformed
+
+    private void btn_minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_minActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btn_minActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +236,13 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg_container;
+    private javax.swing.JButton btn_close;
+    private javax.swing.JButton btn_info;
+    private javax.swing.JButton btn_min;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
