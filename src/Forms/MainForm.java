@@ -28,7 +28,7 @@ public class MainForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         // Redondear bordes de ventana
-        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 3, 3);
+        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 4, 4);
         AWTUtilities.setWindowShape(this, forma);
         
         // Asignar icono 
@@ -68,13 +68,18 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         bg_container.setBackground(new java.awt.Color(255, 255, 255));
-        bg_container.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        bg_container.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 3, true));
         bg_container.setForeground(new java.awt.Color(153, 153, 153));
 
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_info.png"))); // NOI18N
         btn_info.setBorderPainted(false);
         btn_info.setContentAreaFilled(false);
         btn_info.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_infohover.png"))); // NOI18N
+        btn_info.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_infoActionPerformed(evt);
+            }
+        });
 
         btn_min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min.png"))); // NOI18N
         btn_min.setBorderPainted(false);
@@ -113,7 +118,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(btn_min, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +156,7 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)))
                     .addGroup(bg_containerLayout.createSequentialGroup()
-                        .addGap(386, 386, 386)
+                        .addGap(377, 377, 377)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(355, Short.MAX_VALUE))
         );
@@ -163,9 +168,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(32, 32, 32)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -199,6 +204,11 @@ public class MainForm extends javax.swing.JFrame {
     private void btn_minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_minActionPerformed
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_btn_minActionPerformed
+
+    private void btn_infoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_infoActionPerformed
+        infoForm infFrm = new infoForm();
+        infFrm.setVisible(true);
+    }//GEN-LAST:event_btn_infoActionPerformed
 
     /**
      * @param args the command line arguments
