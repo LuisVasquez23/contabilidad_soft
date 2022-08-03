@@ -28,7 +28,7 @@ public class MainForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         // Redondear bordes de ventana
-        Shape forma = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 4, 4);
+        Shape forma = new RoundRectangle2D.Double(0,0, this.getBounds().width, this.getBounds().height, 10, 4);
         AWTUtilities.setWindowShape(this, forma);
         
         // Asignar icono 
@@ -49,6 +49,7 @@ public class MainForm extends javax.swing.JFrame {
         btn_info = new javax.swing.JButton();
         btn_min = new javax.swing.JButton();
         btn_close = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -68,8 +69,10 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         bg_container.setBackground(new java.awt.Color(255, 255, 255));
-        bg_container.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 3, true));
-        bg_container.setForeground(new java.awt.Color(153, 153, 153));
+        bg_container.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 111, 212), 3, true));
+        bg_container.setForeground(new java.awt.Color(207, 210, 207));
+
+        jPanel1.setBackground(new java.awt.Color(100, 111, 212));
 
         btn_info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_info.png"))); // NOI18N
         btn_info.setBorderPainted(false);
@@ -107,6 +110,10 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Home - ContaSoft");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,6 +121,8 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btn_info, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_min, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,10 +133,11 @@ public class MainForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_close)
-                    .addComponent(btn_min)
-                    .addComponent(btn_info))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_close, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_min, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_info, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -142,6 +152,11 @@ public class MainForm extends javax.swing.JFrame {
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_starthover.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bg_containerLayout = new javax.swing.GroupLayout(bg_container);
         bg_container.setLayout(bg_containerLayout);
@@ -210,6 +225,12 @@ public class MainForm extends javax.swing.JFrame {
         infFrm.setVisible(true);
     }//GEN-LAST:event_btn_infoActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DashboardForm dashFrm = new DashboardForm();
+        dashFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,6 +274,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

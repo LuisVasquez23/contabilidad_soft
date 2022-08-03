@@ -53,8 +53,7 @@ public class ProcessForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        bg_container = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JTextField();
         jlNombre = new javax.swing.JLabel();
@@ -71,52 +70,53 @@ public class ProcessForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btn_min = new javax.swing.JButton();
+        btn_close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 61, Short.MAX_VALUE)
-        );
+        bg_container.setBackground(new java.awt.Color(255, 255, 255));
+        bg_container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Datos del empleado");
+        bg_container.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 72, 140, -1));
 
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
             }
         });
+        bg_container.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 113, 170, -1));
 
         jlNombre.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jlNombre.setText("Nombre:");
+        bg_container.add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 112, 94, -1));
 
         jlCargo.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jlCargo.setText("Cargo:");
+        bg_container.add(jlCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 144, 94, -1));
 
         jtCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtCargoActionPerformed(evt);
             }
         });
+        bg_container.add(jtCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 145, 170, -1));
 
         jlPeriodoPago.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jlPeriodoPago.setText("Periodo de pago:");
+        bg_container.add(jlPeriodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 179, -1, -1));
 
         jcbPeriodoPago.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jcbPeriodoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensual", "Quincenal", "Semanal" }));
+        bg_container.add(jcbPeriodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 176, 170, -1));
 
         jlPeriodoPago1.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jlPeriodoPago1.setText("Sueldo:");
+        bg_container.add(jlPeriodoPago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 212, 94, -1));
 
         jftSueldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
         jftSueldo.addActionListener(new java.awt.event.ActionListener() {
@@ -124,12 +124,15 @@ public class ProcessForm extends javax.swing.JFrame {
                 jftSueldoActionPerformed(evt);
             }
         });
+        bg_container.add(jftSueldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 213, 170, -1));
 
         jlPeriodoPago2.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jlPeriodoPago2.setText("Fecha de contrato:");
+        bg_container.add(jlPeriodoPago2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 245, 110, -1));
 
         jlPeriodoPago3.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jlPeriodoPago3.setText("Mes de vacaciones:");
+        bg_container.add(jlPeriodoPago3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 278, -1, -1));
 
         jcbMesVacaciones.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         jcbMesVacaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
@@ -148,6 +151,7 @@ public class ProcessForm extends javax.swing.JFrame {
                 jcbMesVacacionesActionPerformed(evt);
             }
         });
+        bg_container.add(jcbMesVacaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 275, 170, -1));
 
         jDateAñoContrato.setDateFormatString("MM/dd/yyyy");
         jDateAñoContrato.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -171,6 +175,7 @@ public class ProcessForm extends javax.swing.JFrame {
                 jDateAñoContratoPropertyChange(evt);
             }
         });
+        bg_container.add(jDateAñoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 244, 170, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -182,100 +187,74 @@ public class ProcessForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        bg_container.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 516, 408));
+
         jButton1.setText("Calcular renta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        bg_container.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 329, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jlPeriodoPago3)
-                                .addGap(2, 2, 2)
-                                .addComponent(jcbMesVacaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jlPeriodoPago1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jlPeriodoPago, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jlCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jlNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jcbPeriodoPago, 0, 170, Short.MAX_VALUE)
-                                        .addComponent(jtCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                        .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                        .addComponent(jftSueldo)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jlPeriodoPago2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(2, 2, 2)
-                                    .addComponent(jDateAñoContrato, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+        btn_min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min.png"))); // NOI18N
+        btn_min.setBorderPainted(false);
+        btn_min.setContentAreaFilled(false);
+        btn_min.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_min.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_min.setName(""); // NOI18N
+        btn_min.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min_hover.png"))); // NOI18N
+        btn_min.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_minActionPerformed(evt);
+            }
+        });
+
+        btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_close.png"))); // NOI18N
+        btn_close.setBorderPainted(false);
+        btn_close.setContentAreaFilled(false);
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_close.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_close_hover.png"))); // NOI18N
+        btn_close.setVerifyInputWhenFocusTarget(false);
+        btn_close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_closeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_min, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlCargo)
-                            .addComponent(jtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlPeriodoPago)
-                            .addComponent(jcbPeriodoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlPeriodoPago1)
-                            .addComponent(jftSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jlPeriodoPago2)
-                            .addComponent(jDateAñoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlPeriodoPago3)
-                            .addComponent(jcbMesVacaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton1)
-                        .addGap(0, 29, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_close)
+                    .addComponent(btn_min))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        bg_container.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg_container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bg_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -358,6 +337,14 @@ public class ProcessForm extends javax.swing.JFrame {
         this.calculo_renta();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn_minActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_minActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btn_minActionPerformed
+
+    private void btn_closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_closeActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_closeActionPerformed
+
     public void asignacion_valor_variables(){
         this.impuesto.setNombre(this.jtNombre.getText().trim().toUpperCase());
         this.impuesto.setCargo(this.jtCargo.getText().trim().toLowerCase());
@@ -425,10 +412,12 @@ public class ProcessForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg_container;
+    private javax.swing.JButton btn_close;
+    private javax.swing.JButton btn_min;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateAñoContrato;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
