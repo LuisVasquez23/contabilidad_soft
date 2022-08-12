@@ -5,6 +5,9 @@
  */
 package Forms;
 
+import Forms.JPFrm.agregarEmpleadoFrmI;
+import Forms.JPFrm.dashboardFrmI;
+import Forms.JPFrm.boletaPagoFrmI;
 import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
 import java.awt.Shape;
@@ -17,9 +20,8 @@ import javax.swing.ImageIcon;
  */
 public class DashboardForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DashboardForm
-     */
+    int anchoPanel = 952;
+    int altoPanel = 650;
     public DashboardForm() {
         initComponents();
         
@@ -38,13 +40,14 @@ public class DashboardForm extends javax.swing.JFrame {
         
         // Iniciar el dashboard
         dashboardFrmI dashFrm = new dashboardFrmI();
-        dashFrm.setSize(891, 604);
+        dashFrm.setSize(anchoPanel, altoPanel);
         dashFrm.setLocation(0, 0);
         
         container_contenido.removeAll();
         container_contenido.add(dashFrm , BorderLayout.CENTER);
         container_contenido.revalidate();
         container_contenido.repaint();
+        btn_home.setSelected(true);
     }
 
     /**
@@ -63,9 +66,12 @@ public class DashboardForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btn_AgregarEmpleado = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_boletaPago = new javax.swing.JButton();
+        btn_constanciaRenta = new javax.swing.JButton();
+        btn_constanciaSueldo = new javax.swing.JButton();
+        btn_agregarPago = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
+        btn_home = new javax.swing.JButton();
         container_contenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,7 +127,7 @@ public class DashboardForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Dashboard");
+        jLabel1.setText("ContaSoft");
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -135,62 +141,118 @@ public class DashboardForm extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_BoletaPago.png"))); // NOI18N
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_BoletaPagohover.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_boletaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_BoletaPago.png"))); // NOI18N
+        btn_boletaPago.setBorderPainted(false);
+        btn_boletaPago.setContentAreaFilled(false);
+        btn_boletaPago.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_BoletaPagohover.png"))); // NOI18N
+        btn_boletaPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_boletaPagoActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_renta.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_rentahover.png"))); // NOI18N
+        btn_constanciaRenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_renta.png"))); // NOI18N
+        btn_constanciaRenta.setBorderPainted(false);
+        btn_constanciaRenta.setContentAreaFilled(false);
+        btn_constanciaRenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_rentahover.png"))); // NOI18N
+        btn_constanciaRenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_constanciaRentaActionPerformed(evt);
+            }
+        });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_sueldo.png"))); // NOI18N
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_sueldohover.png"))); // NOI18N
+        btn_constanciaSueldo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_sueldo.png"))); // NOI18N
+        btn_constanciaSueldo.setBorderPainted(false);
+        btn_constanciaSueldo.setContentAreaFilled(false);
+        btn_constanciaSueldo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_sueldohover.png"))); // NOI18N
+        btn_constanciaSueldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_constanciaSueldoActionPerformed(evt);
+            }
+        });
+
+        btn_agregarPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_agregarPago.png"))); // NOI18N
+        btn_agregarPago.setBorderPainted(false);
+        btn_agregarPago.setContentAreaFilled(false);
+        btn_agregarPago.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_agregarPagohover.png"))); // NOI18N
+        btn_agregarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarPagoActionPerformed(evt);
+            }
+        });
+
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_regresar.png"))); // NOI18N
+        btn_regresar.setBorderPainted(false);
+        btn_regresar.setContentAreaFilled(false);
+        btn_regresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_regresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_regresarhover.png"))); // NOI18N
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
+
+        btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_home.png"))); // NOI18N
+        btn_home.setBorderPainted(false);
+        btn_home.setContentAreaFilled(false);
+        btn_home.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_homehover.png"))); // NOI18N
+        btn_home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_homeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(51, 51, 51))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(56, 56, 56))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_AgregarEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btn_AgregarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_boletaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_constanciaRenta, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_constanciaSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_agregarPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
+                .addComponent(btn_regresar)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btn_AgregarEmpleado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(btn_home, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addComponent(btn_AgregarEmpleado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_agregarPago)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_boletaPago)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_constanciaRenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_constanciaSueldo)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         container_contenido.setBackground(new java.awt.Color(255, 255, 255));
@@ -199,11 +261,11 @@ public class DashboardForm extends javax.swing.JFrame {
         container_contenido.setLayout(container_contenidoLayout);
         container_contenidoLayout.setHorizontalGroup(
             container_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 953, Short.MAX_VALUE)
+            .addGap(0, 952, Short.MAX_VALUE)
         );
         container_contenidoLayout.setVerticalGroup(
             container_contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -212,16 +274,17 @@ public class DashboardForm extends javax.swing.JFrame {
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 951, Short.MAX_VALUE)
                         .addComponent(btn_min, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                        .addComponent(btn_close, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addComponent(container_contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addGap(13, 13, 13))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +294,7 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_close)
                     .addComponent(btn_min))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(container_contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -270,29 +333,96 @@ public class DashboardForm extends javax.swing.JFrame {
 
     private void btn_AgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarEmpleadoActionPerformed
         agregarEmpleadoFrmI empleadoFrm = new agregarEmpleadoFrmI();
-        empleadoFrm.setSize(891, 604);
+        empleadoFrm.setSize(anchoPanel, altoPanel);
         empleadoFrm.setLocation(0, 0);
         
         container_contenido.removeAll();
         container_contenido.add(empleadoFrm , BorderLayout.CENTER);
         container_contenido.revalidate();
         container_contenido.repaint();
+        
+        btn_home.setSelected(false);
+        btn_agregarPago.setSelected(false);
+        btn_boletaPago.setSelected(false);
+        btn_constanciaRenta.setSelected(false);
+        btn_constanciaSueldo.setSelected(false);
+        btn_AgregarEmpleado.setSelected(true);
+        
     }//GEN-LAST:event_btn_AgregarEmpleadoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_boletaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_boletaPagoActionPerformed
         boletaPagoFrmI boletaFrm = new boletaPagoFrmI();
-        boletaFrm.setSize(891, 604);
+        boletaFrm.setSize(anchoPanel, altoPanel);
         boletaFrm.setLocation(0, 0);
         
         container_contenido.removeAll();
         container_contenido.add(boletaFrm , BorderLayout.CENTER);
         container_contenido.revalidate();
         container_contenido.repaint();
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+        btn_home.setSelected(false);
+        btn_agregarPago.setSelected(false);
+        btn_boletaPago.setSelected(true);
+        btn_constanciaRenta.setSelected(false);
+        btn_constanciaSueldo.setSelected(false);
+        btn_AgregarEmpleado.setSelected(false);
+    }//GEN-LAST:event_btn_boletaPagoActionPerformed
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        MainForm mainFrm = new MainForm();
+        mainFrm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
+        // Iniciar el dashboard
+        dashboardFrmI dashFrm = new dashboardFrmI();
+        dashFrm.setSize(anchoPanel, altoPanel);
+        dashFrm.setLocation(0, 0);
+        
+        container_contenido.removeAll();
+        container_contenido.add(dashFrm , BorderLayout.CENTER);
+        container_contenido.revalidate();
+        container_contenido.repaint();
+        
+        btn_home.setSelected(true);
+        btn_agregarPago.setSelected(false);
+        btn_boletaPago.setSelected(false);
+        btn_constanciaRenta.setSelected(false);
+        btn_constanciaSueldo.setSelected(false);
+        btn_AgregarEmpleado.setSelected(false);
+    }//GEN-LAST:event_btn_homeActionPerformed
+
+    private void btn_agregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarPagoActionPerformed
+        btn_home.setSelected(false);
+        btn_agregarPago.setSelected(true);
+        btn_boletaPago.setSelected(false);
+        btn_constanciaRenta.setSelected(false);
+        btn_constanciaSueldo.setSelected(false);
+        btn_AgregarEmpleado.setSelected(false);
+    }//GEN-LAST:event_btn_agregarPagoActionPerformed
+
+    private void btn_constanciaRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_constanciaRentaActionPerformed
+        btn_home.setSelected(false);
+        btn_agregarPago.setSelected(false);
+        btn_boletaPago.setSelected(false);
+        btn_constanciaRenta.setSelected(true);
+        btn_constanciaSueldo.setSelected(false);
+        btn_AgregarEmpleado.setSelected(false);
+    }//GEN-LAST:event_btn_constanciaRentaActionPerformed
+
+    private void btn_constanciaSueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_constanciaSueldoActionPerformed
+       btn_home.setSelected(false);
+        btn_agregarPago.setSelected(false);
+        btn_boletaPago.setSelected(false);
+        btn_constanciaRenta.setSelected(false);
+        btn_constanciaSueldo.setSelected(true);
+        btn_AgregarEmpleado.setSelected(false);
+    }//GEN-LAST:event_btn_constanciaSueldoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,12 +462,15 @@ public class DashboardForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btn_AgregarEmpleado;
+    private javax.swing.JButton btn_agregarPago;
+    private javax.swing.JButton btn_boletaPago;
     private javax.swing.JButton btn_close;
+    private javax.swing.JButton btn_constanciaRenta;
+    private javax.swing.JButton btn_constanciaSueldo;
+    private javax.swing.JButton btn_home;
     private javax.swing.JButton btn_min;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JPanel container_contenido;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
