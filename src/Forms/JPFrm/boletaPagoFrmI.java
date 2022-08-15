@@ -30,6 +30,14 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        carnet_input = new Helpers.TextField();
+        btn_buscarEmpleado = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btn_limpiarDatos = new javax.swing.JButton();
+        btn_generarPDF = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -41,21 +49,90 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         jLabel2.setText("Boleta de pago");
 
+        carnet_input.setForeground(new java.awt.Color(102, 102, 102));
+        carnet_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        carnet_input.setLabelText("Carnet");
+
+        btn_buscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_buscarEmpleado.png"))); // NOI18N
+        btn_buscarEmpleado.setBorderPainted(false);
+        btn_buscarEmpleado.setContentAreaFilled(false);
+        btn_buscarEmpleado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_buscarEmpleadohover.png"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel3.setText("Informacion del empleado");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel4.setText("Nombre:");
+
+        btn_limpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
+        btn_limpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_limpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_limpiarDatos.setText("Limpiar datos");
+        btn_limpiarDatos.setBorder(null);
+
+        btn_generarPDF.setBackground(new java.awt.Color(153, 153, 255));
+        btn_generarPDF.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_generarPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btn_generarPDF.setText("Generar PDF");
+
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#", "Fecha del pago", "Sueldo", "Bono", "Salario", "Horas extras", "ISS", "AFP"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(608, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(160, 160, 160)
+                        .addComponent(btn_buscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn_limpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(627, 627, 627))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(548, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_buscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_limpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -72,8 +149,16 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_buscarEmpleado;
+    private javax.swing.JButton btn_generarPDF;
+    private javax.swing.JButton btn_limpiarDatos;
+    private Helpers.TextField carnet_input;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

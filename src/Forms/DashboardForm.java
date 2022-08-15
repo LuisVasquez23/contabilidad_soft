@@ -5,7 +5,10 @@
  */
 package Forms;
 
+import Forms.JPFrm.ConstanciaRentaJPFrm;
+import Forms.JPFrm.ConstanciaSueldoJPFrm;
 import Forms.JPFrm.agregarEmpleadoFrmI;
+import Forms.JPFrm.agregarPagoJPFrm;
 import Forms.JPFrm.dashboardFrmI;
 import Forms.JPFrm.boletaPagoFrmI;
 import com.sun.awt.AWTUtilities;
@@ -398,6 +401,18 @@ public class DashboardForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_homeActionPerformed
 
     private void btn_agregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarPagoActionPerformed
+
+
+        agregarPagoJPFrm agregarPagoFrm = new agregarPagoJPFrm();
+        agregarPagoFrm.setSize(anchoPanel, altoPanel);
+        agregarPagoFrm.setLocation(0, 0);
+        
+        container_contenido.removeAll();
+        container_contenido.add(agregarPagoFrm , BorderLayout.CENTER);
+        container_contenido.revalidate();
+        container_contenido.repaint();
+        
+        
         btn_home.setSelected(false);
         btn_agregarPago.setSelected(true);
         btn_boletaPago.setSelected(false);
@@ -407,6 +422,16 @@ public class DashboardForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_agregarPagoActionPerformed
 
     private void btn_constanciaRentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_constanciaRentaActionPerformed
+        
+        ConstanciaRentaJPFrm constanciaRentaFrm = new ConstanciaRentaJPFrm();
+        constanciaRentaFrm.setSize(anchoPanel, altoPanel);
+        constanciaRentaFrm.setLocation(0, 0);
+        
+        container_contenido.removeAll();
+        container_contenido.add(constanciaRentaFrm , BorderLayout.CENTER);
+        container_contenido.revalidate();
+        container_contenido.repaint();
+        
         btn_home.setSelected(false);
         btn_agregarPago.setSelected(false);
         btn_boletaPago.setSelected(false);
@@ -416,7 +441,17 @@ public class DashboardForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_constanciaRentaActionPerformed
 
     private void btn_constanciaSueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_constanciaSueldoActionPerformed
-       btn_home.setSelected(false);
+        
+        ConstanciaSueldoJPFrm constancia_sueldoFrm = new ConstanciaSueldoJPFrm();
+        constancia_sueldoFrm.setSize(anchoPanel, altoPanel);
+        constancia_sueldoFrm.setLocation(0, 0);
+        
+        container_contenido.removeAll();
+        container_contenido.add(constancia_sueldoFrm , BorderLayout.CENTER);
+        container_contenido.revalidate();
+        container_contenido.repaint();
+        
+        btn_home.setSelected(false);
         btn_agregarPago.setSelected(false);
         btn_boletaPago.setSelected(false);
         btn_constanciaRenta.setSelected(false);

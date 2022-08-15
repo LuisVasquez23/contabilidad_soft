@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/DateChooser/SelectedAction.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/DateChooser/Years.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/DateChooser/Button.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/Combobox.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/DateChooser/Months.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/DateChooser/Dates.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Helpers/DateChooser/Slider.java</file>
+            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Forms/JPFrm/agregarPagoJPFrm.java</file>
+            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Forms/JPFrm/boletaPagoFrmI.java</file>
+            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Forms/JPFrm/ConstanciaSueldoJPFrm.java</file>
             <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Forms/JPFrm/agregarEmpleadoFrmI.java</file>
-            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Clases/Empleado.java</file>
+            <file>file:/C:/Users/luis/Desktop/UNICAES/Aplicación%20de%20Técnicas%20Contables/Evaluaciones/Proyecto01-Impuesto%20sobre%20la%20renta/ContaSoft/src/Forms/JPFrm/ConstanciaRentaJPFrm.java</file>
         </group>
     </open-files>
 </project-private>

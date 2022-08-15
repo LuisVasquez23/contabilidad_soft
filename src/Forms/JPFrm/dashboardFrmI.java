@@ -5,15 +5,17 @@
  */
 package Forms.JPFrm;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author luis
  */
 public class dashboardFrmI extends javax.swing.JPanel {
 
-    /**
-     * Creates new form agregarEmpleadoFrmI
-     */
+    int anchoPanel = 952;
+    int altoPanel = 650;
+    
     public dashboardFrmI() {
         initComponents();
        
@@ -33,6 +35,12 @@ public class dashboardFrmI extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         materialTabbed1 = new Helpers.MaterialTabbed();
         dashPane = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         plantillaPatronalPane = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -51,15 +59,57 @@ public class dashboardFrmI extends javax.swing.JPanel {
 
         dashPane.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
+        jLabel4.setText("Acciones disponibles");
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel5.setText("- Agregar empleado");
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel6.setText("- Agregar pago");
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel7.setText("- Constancia de sueldo");
+
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel8.setText("- Constancia de renta");
+
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel9.setText("- Boletas de pago");
+
         javax.swing.GroupLayout dashPaneLayout = new javax.swing.GroupLayout(dashPane);
         dashPane.setLayout(dashPaneLayout);
         dashPaneLayout.setHorizontalGroup(
             dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 831, Short.MAX_VALUE)
+            .addGroup(dashPaneLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         dashPaneLayout.setVerticalGroup(
             dashPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGroup(dashPaneLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel4)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         materialTabbed1.addTab("Dashboard", dashPane);
@@ -103,7 +153,7 @@ public class dashboardFrmI extends javax.swing.JPanel {
                         .addGap(21, 21, 21)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(materialTabbed1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE))
+                .addComponent(materialTabbed1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -124,6 +174,12 @@ public class dashboardFrmI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private Helpers.MaterialTabbed materialTabbed1;
     private javax.swing.JPanel plantillaPatronalPane;

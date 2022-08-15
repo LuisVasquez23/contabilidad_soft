@@ -5,6 +5,7 @@
  */
 package Forms.JPFrm;
 
+import java.awt.Color;
 import javax.swing.BorderFactory;
 
 /**
@@ -37,19 +38,20 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         lblDatosPersonales = new javax.swing.JLabel();
         primerApellido_input = new Helpers.TextField();
         segundoApellido_input = new Helpers.TextField();
-        combobox1 = new Helpers.Combobox();
+        periodo_input = new Helpers.Combobox();
         lblDatosLaborales = new javax.swing.JLabel();
-        primerApellido_input1 = new Helpers.TextField();
-        primerApellido_input2 = new Helpers.TextField();
-        fecha_contrato = new Helpers.TextField();
-        jCheckBoxCustom1 = new Helpers.JCheckBoxCustom();
-        lblDatosLaborales1 = new javax.swing.JLabel();
-        sueldoExtra_input = new Helpers.TextField();
-        combobox2 = new Helpers.Combobox();
+        cargo_input = new Helpers.TextField();
+        salario_input = new Helpers.TextField();
+        fechaContrato_input = new Helpers.TextField();
+        vacaiones_input = new Helpers.Combobox();
+        NIT_input = new Helpers.TextField();
+        btn_agregarEmpleado = new javax.swing.JButton();
+        btn_limpiarDatos = new javax.swing.JButton();
 
         datePicker.setForeground(new java.awt.Color(102, 102, 255));
-        datePicker.setTextRefernce(fecha_contrato);
+        datePicker.setTextRefernce(fechaContrato_input);
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(891, 604));
         setPreferredSize(new java.awt.Dimension(891, 604));
 
@@ -82,56 +84,52 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         segundoApellido_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         segundoApellido_input.setLabelText("Segundo apellido");
 
-        combobox1.setForeground(new java.awt.Color(102, 102, 102));
-        combobox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semanal", "Quincenal", "Mensual" }));
-        combobox1.setSelectedIndex(-1);
-        combobox1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        combobox1.setLabeText("Periodo de pago");
+        periodo_input.setForeground(new java.awt.Color(102, 102, 102));
+        periodo_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semanal", "Quincenal", "Mensual" }));
+        periodo_input.setSelectedIndex(-1);
+        periodo_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        periodo_input.setLabeText("Periodo de pago");
 
         lblDatosLaborales.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblDatosLaborales.setForeground(new java.awt.Color(102, 102, 102));
         lblDatosLaborales.setText("Datos laborales");
 
-        primerApellido_input1.setForeground(new java.awt.Color(102, 102, 102));
-        primerApellido_input1.setToolTipText("Cargo");
-        primerApellido_input1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        primerApellido_input1.setLabelText("Puesto o cargo");
+        cargo_input.setForeground(new java.awt.Color(102, 102, 102));
+        cargo_input.setToolTipText("Cargo");
+        cargo_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        cargo_input.setLabelText("Puesto o cargo");
 
-        primerApellido_input2.setForeground(new java.awt.Color(102, 102, 102));
-        primerApellido_input2.setToolTipText("Sueldo");
-        primerApellido_input2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        primerApellido_input2.setLabelText("Sueldo");
+        salario_input.setForeground(new java.awt.Color(102, 102, 102));
+        salario_input.setToolTipText("Sueldo");
+        salario_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        salario_input.setLabelText("Salario");
 
-        fecha_contrato.setForeground(new java.awt.Color(102, 102, 102));
-        fecha_contrato.setToolTipText("Fecha de contrato");
-        fecha_contrato.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        fecha_contrato.setLabelText("Fecha de contrato");
+        fechaContrato_input.setForeground(new java.awt.Color(102, 102, 102));
+        fechaContrato_input.setToolTipText("Fecha de contrato");
+        fechaContrato_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        fechaContrato_input.setLabelText("Fecha de contrato");
 
-        jCheckBoxCustom1.setForeground(new java.awt.Color(102, 102, 102));
-        jCheckBoxCustom1.setText("Servicios profesionales");
-        jCheckBoxCustom1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jCheckBoxCustom1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxCustom1ActionPerformed(evt);
-            }
-        });
+        vacaiones_input.setForeground(new java.awt.Color(102, 102, 102));
+        vacaiones_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", " " }));
+        vacaiones_input.setSelectedIndex(-1);
+        vacaiones_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        vacaiones_input.setLabeText("Mes de vacaciones");
 
-        lblDatosLaborales1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblDatosLaborales1.setForeground(new java.awt.Color(102, 102, 102));
-        lblDatosLaborales1.setText("Datos extras");
+        NIT_input.setForeground(new java.awt.Color(102, 102, 102));
+        NIT_input.setText("0000-000000-000-0");
+        NIT_input.setToolTipText("Cargo");
+        NIT_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        NIT_input.setLabelText("NIT");
 
-        sueldoExtra_input.setForeground(new java.awt.Color(102, 102, 102));
-        sueldoExtra_input.setToolTipText("Sueldo");
-        sueldoExtra_input.setDisabledTextColor(new java.awt.Color(248, 248, 248));
-        sueldoExtra_input.setEnabled(false);
-        sueldoExtra_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        sueldoExtra_input.setLabelText("Sueldo extra");
+        btn_agregarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_agregarEmpleadoDB.png"))); // NOI18N
+        btn_agregarEmpleado.setBorderPainted(false);
+        btn_agregarEmpleado.setContentAreaFilled(false);
 
-        combobox2.setForeground(new java.awt.Color(102, 102, 102));
-        combobox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semanal", "Quincenal", "Mensual" }));
-        combobox2.setSelectedIndex(-1);
-        combobox2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        combobox2.setLabeText("Mes de vacaciones");
+        btn_limpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
+        btn_limpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_limpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_limpiarDatos.setText("Limpiar datos");
+        btn_limpiarDatos.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,31 +139,30 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDatosLaborales1)
-                            .addComponent(label_title)
-                            .addComponent(lblDatosPersonales))
-                        .addContainerGap(503, Short.MAX_VALUE))
+                        .addComponent(lblDatosPersonales)
+                        .addContainerGap(650, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(label_title)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(sueldoExtra_input, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(combobox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(primerApellido_input1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lblDatosLaborales)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(primerApellido_input2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(primerNombre_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(primerApellido_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblDatosLaborales)
+                                .addComponent(vacaiones_input, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                                .addComponent(salario_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(primerNombre_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(primerApellido_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cargo_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btn_agregarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(segundoApellido_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(segundoNombre_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combobox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fecha_contrato, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56))))
+                            .addComponent(periodo_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechaContrato_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NIT_input, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_limpiarDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,26 +179,29 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(lblDatosLaborales)
                         .addGap(18, 18, 18)
-                        .addComponent(primerApellido_input1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cargo_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(primerApellido_input2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(salario_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(vacaiones_input, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(segundoNombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(segundoApellido_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(253, 253, 253)
+                                .addComponent(fechaContrato_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(segundoNombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(segundoApellido_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(periodo_input, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(fecha_contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(combobox2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(lblDatosLaborales1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBoxCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sueldoExtra_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                        .addComponent(NIT_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_agregarEmpleado)
+                    .addComponent(btn_limpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -216,35 +216,24 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBoxCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxCustom1ActionPerformed
-        boolean estado = this.sueldoExtra_input.isEnabled();
-        
-        if(estado ==  false){
-            this.sueldoExtra_input.setEnabled(true);
-        }else{
-            this.sueldoExtra_input.setEnabled(false);
-        }
-        
-    }//GEN-LAST:event_jCheckBoxCustom1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Helpers.Combobox combobox1;
-    private Helpers.Combobox combobox2;
+    private Helpers.TextField NIT_input;
+    private javax.swing.JButton btn_agregarEmpleado;
+    private javax.swing.JButton btn_limpiarDatos;
+    private Helpers.TextField cargo_input;
     private com.raven.datechooser.DateChooser datePicker;
-    private Helpers.TextField fecha_contrato;
-    private Helpers.JCheckBoxCustom jCheckBoxCustom1;
+    private Helpers.TextField fechaContrato_input;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_title;
     private javax.swing.JLabel lblDatosLaborales;
-    private javax.swing.JLabel lblDatosLaborales1;
     private javax.swing.JLabel lblDatosPersonales;
+    private Helpers.Combobox periodo_input;
     private Helpers.TextField primerApellido_input;
-    private Helpers.TextField primerApellido_input1;
-    private Helpers.TextField primerApellido_input2;
     private Helpers.TextField primerNombre_input;
+    private Helpers.TextField salario_input;
     private Helpers.TextField segundoApellido_input;
     private Helpers.TextField segundoNombre_input;
-    private Helpers.TextField sueldoExtra_input;
+    private Helpers.Combobox vacaiones_input;
     // End of variables declaration//GEN-END:variables
 }

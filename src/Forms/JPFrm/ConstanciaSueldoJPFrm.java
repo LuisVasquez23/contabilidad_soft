@@ -27,19 +27,95 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label_title = new javax.swing.JLabel();
+        carnet_input = new Helpers.TextField();
+        btn_buscarEmpleado = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btn_generarPDF = new javax.swing.JButton();
+        btn_LimpiarDatos = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        label_title.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        label_title.setText("Constancia de sueldo");
+
+        carnet_input.setForeground(new java.awt.Color(102, 102, 102));
+        carnet_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        carnet_input.setLabelText("Carnet");
+
+        btn_buscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_buscarEmpleado.png"))); // NOI18N
+        btn_buscarEmpleado.setBorderPainted(false);
+        btn_buscarEmpleado.setContentAreaFilled(false);
+        btn_buscarEmpleado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_buscarEmpleadohover.png"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        jLabel3.setText("Informacion del empleado");
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel4.setText("Nombre:");
+
+        btn_generarPDF.setBackground(new java.awt.Color(153, 153, 255));
+        btn_generarPDF.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_generarPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btn_generarPDF.setText("Generar PDF");
+
+        btn_LimpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
+        btn_LimpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_LimpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_LimpiarDatos.setText("Limpiar datos");
+        btn_LimpiarDatos.setBorder(null);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_title)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_LimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(48, 48, 48)
+                            .addComponent(btn_buscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_title)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_buscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_LimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_LimpiarDatos;
+    private javax.swing.JButton btn_buscarEmpleado;
+    private javax.swing.JButton btn_generarPDF;
+    private Helpers.TextField carnet_input;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel label_title;
     // End of variables declaration//GEN-END:variables
 }
