@@ -8,6 +8,8 @@ package Forms;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.swing.ImageIcon;
 
 /**
@@ -33,6 +35,9 @@ public class MainForm extends javax.swing.JFrame {
         
         // Asignar icono 
         setIconImage(new ImageIcon(getClass().getResource("/Assets/Icons/icono.png")).getImage());
+        
+        String pathDB = getClass().getResource("/DB/Empleados.db").toString().replace("build", "src").replace("/classes/", "/");
+        System.out.println(pathDB);
     }
 
     /**

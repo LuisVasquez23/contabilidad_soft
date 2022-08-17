@@ -10,13 +10,23 @@ import java.util.Date;
  * @author mario
  */
 public class Empleado {
-    protected String nombre;
-    protected String cargo;
-    protected String periodo_Pago;
-    protected double sueldo;
-    protected Date anio_contrato;
-    protected String pago_Extra;
+    private String nit;
+    private String nombre;
+    private String cargo;
+    private String periodo_Pago;
+    private double sueldo;
+    private String anio_contrato;
+    private String pago_Extra; 
 
+    public String getMes_vac() {
+        return mes_vac;
+    }
+
+    public void setMes_vac(String mes_vac) {
+        this.mes_vac = mes_vac;
+    }
+    private String mes_vac;
+    
     public String getNombre() {
         return nombre;
     }
@@ -49,11 +59,11 @@ public class Empleado {
         this.sueldo = sueldo;
     }
 
-    public Date getAnio_contrato() {
+    public String getAnio_contrato() {
         return anio_contrato;
     }
 
-    public void setAnio_contrato(Date anio_contrato) {
+    public void setAnio_contrato(String anio_contrato) {
         this.anio_contrato = anio_contrato;
     }
     
@@ -63,5 +73,13 @@ public class Empleado {
 
     public void setPago_Extra(String pago_Extra) {
         this.pago_Extra = pago_Extra;
+    }
+    
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 }

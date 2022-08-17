@@ -7,19 +7,50 @@ package Forms.JPFrm;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import Conexion.Conexion;
+import Clases.*;
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
-/**
- *
- * @author luis
- */
 public class agregarEmpleadoFrmI extends javax.swing.JPanel {
-
-    /**
-     * Creates new form agregarEmpleadoFrmI
-     */
-    public agregarEmpleadoFrmI() {
+    
+    Conexion conn;
+    scripts sc;
+    Empleado empleado;
+    int id;
+    ResultSet rs;
+    SimpleDateFormat formato;
+    Date fecha_actual;
+    
+    public agregarEmpleadoFrmI() throws SQLException {
         initComponents();
+        conn = new Conexion();
+        sc = new scripts();
+        fecha_actual = new Date();
     }
+    
+    //procedimiento para limpiar los campos.
+    public void limpiar(){
+        
+        this.primerNombre_input.setText("");
+        this.primerApellido_input.setText("");
+        this.segundoApellido_input.setText("");
+        this.segundoNombre_input.setText("");
+        this.NIT_input.setText("0000-000000-000-0");
+        this.salario_input.setText("");
+        this.cargo_input.setText("");
+        
+        this.vacaiones_input.setSelectedIndex(-1);
+        this.periodo_input.setSelectedIndex(-1);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,7 +116,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         segundoApellido_input.setLabelText("Segundo apellido");
 
         periodo_input.setForeground(new java.awt.Color(102, 102, 102));
-        periodo_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semanal", "Quincenal", "Mensual" }));
+        periodo_input.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mensual" }));
         periodo_input.setSelectedIndex(-1);
         periodo_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         periodo_input.setLabeText("Periodo de pago");
@@ -120,10 +151,20 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         NIT_input.setToolTipText("Cargo");
         NIT_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         NIT_input.setLabelText("NIT");
+        NIT_input.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NIT_inputMouseClicked(evt);
+            }
+        });
 
         btn_agregarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_agregarEmpleadoDB.png"))); // NOI18N
         btn_agregarEmpleado.setBorderPainted(false);
         btn_agregarEmpleado.setContentAreaFilled(false);
+        btn_agregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarEmpleadoActionPerformed(evt);
+            }
+        });
 
         btn_limpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
         btn_limpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -216,6 +257,141 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_agregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarEmpleadoActionPerformed
+        String nombre, cargo, periodo = "", concat, nit = "", mes_vac = "", fecha = "";
+        double sueldo = 0, resta_anio = 0, resta_mes = 0, resta_dia = 0;
+        Date fecha_contratacion;
+        formato = new SimpleDateFormat("dd-MM-yyyy");     
+        boolean band_fecha =  false;
+        
+        
+        //concatenacion del nomnbre
+        concat = this.primerNombre_input.getText().toUpperCase()+" "+this.segundoNombre_input.getText().toUpperCase()+" "
+                +this.primerApellido_input.getText().toUpperCase()+" "+this.segundoApellido_input.getText().toUpperCase();
+        
+        //asignacion de la concatenacion a su respectiva variable
+        nombre = concat;
+        
+        //asignacion del cargo
+        cargo = this.cargo_input.getText().toUpperCase();
+        
+        //Para saber si no se ha seleccionado nada en la jcombo del periodo.
+        try {
+            periodo = this.periodo_input.getSelectedItem().toString();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de pago");
+        }
+        //Para la asignacion del sueldo
+        try {
+            sueldo = Double.parseDouble(this.salario_input.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el campo de sueldo!");
+        }
+        
+        //Para la asigniacion de la fecha de contratacion
+        try {
+            
+            fecha = this.fechaContrato_input.getText();
+            fecha_contratacion = (Date) formato.parse(this.fechaContrato_input.getText());
+            resta_anio = fecha_actual.getYear()- fecha_contratacion.getYear();
+            resta_mes = fecha_actual.getMonth() - fecha_contratacion.getMonth();
+            resta_dia = fecha_actual.getDate() - fecha_contratacion.getDate();
+            
+            if (resta_anio == 0) {
+                if (resta_mes >= 0) {
+                    if (resta_dia >= 0) {
+                        band_fecha = true;
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Incongruencia en el día");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Incongruencia en el mes");
+                }
+            }else if(resta_anio > 0){
+                band_fecha = true;
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incongruencia en el año");
+            }
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error en el campo de fecha");
+        }
+        
+        
+        //Asignacion del mes de vacacion
+        try {
+            //condicional para saber si puede tener vacaciones.
+            if (resta_anio == 1) {
+                if (resta_mes == 0) {
+                    if (resta_dia <= 0) {
+                        mes_vac = this.vacaiones_input.getSelectedItem().toString();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
+                    }
+                }
+                else if(resta_mes < 0){
+                    mes_vac = this.vacaiones_input.getSelectedItem().toString();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
+                }
+            }
+            else if(resta_anio > 1){
+                mes_vac = this.vacaiones_input.getSelectedItem().toString();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
+            }
+            
+        } catch (Exception e) {
+        }
+        
+        //condicional para saber si el nit se ha ingresado
+        if (this.NIT_input.getText().equals("0000-000000-000-0") || this.NIT_input.getText().length() < 0) {
+            nit = "";
+        }
+        else{
+            nit = this.NIT_input.getText();
+        }
+        if (nombre.length() > 3 && cargo.length() > 0 && periodo.length() > 0 && sueldo > 0 && band_fecha == true && nit.length() ==  17) {
+           
+            this.Cargar_datos(nit, nombre, cargo, periodo, fecha, mes_vac, sueldo);
+            this.limpiar();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Revise los campos!");
+        }
+    }//GEN-LAST:event_btn_agregarEmpleadoActionPerformed
+
+    private void NIT_inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NIT_inputMouseClicked
+        
+    }//GEN-LAST:event_NIT_inputMouseClicked
+
+    public void Cargar_datos(String pnit, String pnombre, String pcargo, String pPeriodo, String pfecha, String mes_vac,double psueldo){
+        conn.Conexion();
+        empleado = new Empleado();
+        
+        empleado.setNit(pnit);
+        empleado.setNombre(pnombre);
+        empleado.setCargo(pcargo);
+        empleado.setPeriodo_Pago(pPeriodo);
+        empleado.setAnio_contrato(pcargo);
+        empleado.setSueldo(psueldo);
+        empleado.setMes_vac(mes_vac);
+        
+        try {
+            conn.agregar(sc.ingresar_empleado(), empleado);
+            JOptionPane.showMessageDialog(null, "se ha agregado el empleado");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar en la base de datos");
+        }
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Helpers.TextField NIT_input;
