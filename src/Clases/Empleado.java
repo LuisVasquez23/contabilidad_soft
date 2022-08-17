@@ -15,7 +15,7 @@ public class Empleado {
     private String cargo;
     private String periodo_Pago;
     private double sueldo;
-    private String anio_contrato;
+    private String fecha_contrato;
     private String pago_Extra; 
 
     public String getMes_vac() {
@@ -59,12 +59,12 @@ public class Empleado {
         this.sueldo = sueldo;
     }
 
-    public String getAnio_contrato() {
-        return anio_contrato;
+    public String getfecha_contrato() {
+        return fecha_contrato;
     }
 
-    public void setAnio_contrato(String anio_contrato) {
-        this.anio_contrato = anio_contrato;
+    public void setfecha_contrato(String anio_contrato) {
+        this.fecha_contrato = anio_contrato;
     }
     
     public String getPago_Extra() {

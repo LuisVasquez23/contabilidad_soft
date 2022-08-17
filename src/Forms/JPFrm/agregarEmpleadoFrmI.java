@@ -297,14 +297,10 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
             resta_mes = fecha_contratacion.getMonth() - fecha_actual.getMonth();
             resta_dia = fecha_contratacion.getDate() - fecha_actual.getDate() ;
             
-            System.out.println(resta_anio);
-            System.out.println(resta_mes);
-            System.out.println(resta_dia);
             if (resta_anio == 0) {
                 if (resta_mes <= 0) {
                     if (resta_dia <= 0) {
                         band_fecha = true;
-                        System.out.println("true viejo");
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Incongruencia en el día");
@@ -341,7 +337,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
                 }
             }
-            else if(resta_anio <= 1){
+            else if(resta_anio < -1){
                 mes_vac = this.vacaiones_input.getSelectedItem().toString();
             }
             else{
@@ -359,7 +355,6 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
             nit = this.NIT_input.getText();
         }
         if (nombre.length() > 3 && cargo.length() > 0 && periodo.length() > 0 && sueldo > 0 && band_fecha == true && nit.length() ==  17) {
-           
             this.Cargar_datos(nit, nombre, cargo, periodo, fecha, mes_vac, sueldo);
             this.limpiar();
         }
@@ -380,7 +375,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         empleado.setNombre(pnombre);
         empleado.setCargo(pcargo);
         empleado.setPeriodo_Pago(pPeriodo);
-        empleado.setAnio_contrato(pfecha);
+        empleado.setfecha_contrato(pfecha);
         empleado.setSueldo(psueldo);
         empleado.setMes_vac(mes_vac);
         

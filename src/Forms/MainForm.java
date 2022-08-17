@@ -37,7 +37,6 @@ public class MainForm extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/Assets/Icons/icono.png")).getImage());
         
         String pathDB = getClass().getResource("/DB/Empleados.db").toString().replace("build", "src").replace("/classes/", "/");
-        System.out.println(pathDB);
     }
 
     /**

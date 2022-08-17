@@ -34,7 +34,7 @@ public class Conexion {
             pst.setString(3, empleado.getCargo());
             pst.setString(4, empleado.getPeriodo_Pago());
             pst.setDouble(5, empleado.getSueldo());
-            pst.setString(6, empleado.getAnio_contrato());
+            pst.setString(6, empleado.getfecha_contrato());
             pst.setString(7, empleado.getMes_vac());
             //ejecutar el el comando de ingreso de datos
             pst.execute();        
