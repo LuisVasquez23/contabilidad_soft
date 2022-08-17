@@ -8,7 +8,7 @@ public class Conexion {
     Connection conex;
     
     public void Conexion(){
-        String url = "jdbc:sqlite:C:\\Users\\Alejandro\\Desktop\\3 año\\6 ciclo\\MAte\\contabilidad_soft\\Empleados.db";
+        String url = "jdbc:sqlite:C:\\Users\\Alejandro\\Desktop\\3 año\\6 ciclo\\MAte\\contabilidad_soft\\Empleados";
         
         try {
             conex = DriverManager.getConnection(url);
@@ -23,9 +23,8 @@ public class Conexion {
    }
    
    
-    public void agregar(String script, Empleado empleado)
+    public void agregar(String script, Empleado empleado) throws SQLException
     {
-        try {
             PreparedStatement pst = conex.prepareStatement(script);
         
             pst.setString(1,empleado.getNit());
@@ -36,10 +35,6 @@ public class Conexion {
             pst.setString(6, empleado.getAnio_contrato());
             pst.setString(7, empleado.getMes_vac());
             //ejecutar el el comando de ingreso de datos
-            pst.execute();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.toString());
-        }
-        
+            pst.execute();        
     }
 }
