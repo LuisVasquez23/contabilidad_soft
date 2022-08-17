@@ -293,14 +293,18 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
             
             fecha = this.fechaContrato_input.getText();
             fecha_contratacion = (Date) formato.parse(this.fechaContrato_input.getText());
-            resta_anio = fecha_actual.getYear()- fecha_contratacion.getYear();
-            resta_mes = fecha_actual.getMonth() - fecha_contratacion.getMonth();
-            resta_dia = fecha_actual.getDate() - fecha_contratacion.getDate();
+            resta_anio = fecha_contratacion.getYear() - fecha_actual.getYear();
+            resta_mes = fecha_contratacion.getMonth() - fecha_actual.getMonth();
+            resta_dia = fecha_contratacion.getDate() - fecha_actual.getDate() ;
             
+            System.out.println(resta_anio);
+            System.out.println(resta_mes);
+            System.out.println(resta_dia);
             if (resta_anio == 0) {
-                if (resta_mes >= 0) {
-                    if (resta_dia >= 0) {
+                if (resta_mes <= 0) {
+                    if (resta_dia <= 0) {
                         band_fecha = true;
+                        System.out.println("true viejo");
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Incongruencia en el día");
@@ -309,7 +313,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
                 else{
                     JOptionPane.showMessageDialog(null, "Incongruencia en el mes");
                 }
-            }else if(resta_anio > 0){
+            }else if(resta_anio < 0){
                 band_fecha = true;
             }
             else{
@@ -324,23 +328,20 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         //Asignacion del mes de vacacion
         try {
             //condicional para saber si puede tener vacaciones.
-            if (resta_anio == 1) {
-                if (resta_mes == 0) {
-                    if (resta_dia <= 0) {
+            if (resta_anio <= -1) {
+                if (resta_mes >= 0) {
+                    if (resta_dia >= 0) {
                         mes_vac = this.vacaiones_input.getSelectedItem().toString();
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
                     }
                 }
-                else if(resta_mes < 0){
-                    mes_vac = this.vacaiones_input.getSelectedItem().toString();
-                }
                 else{
                     JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
                 }
             }
-            else if(resta_anio > 1){
+            else if(resta_anio <= 1){
                 mes_vac = this.vacaiones_input.getSelectedItem().toString();
             }
             else{
@@ -379,7 +380,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         empleado.setNombre(pnombre);
         empleado.setCargo(pcargo);
         empleado.setPeriodo_Pago(pPeriodo);
-        empleado.setAnio_contrato(pcargo);
+        empleado.setAnio_contrato(pfecha);
         empleado.setSueldo(psueldo);
         empleado.setMes_vac(mes_vac);
         
