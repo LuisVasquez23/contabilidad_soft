@@ -17,6 +17,7 @@ public class Impuesto extends Empleado{
     private double isss_techo;
     private double resul_afp;
     private double resul_isss;
+    private double sueldo;
     
     private double sueldo_noImpuesto;
     
@@ -30,11 +31,12 @@ public class Impuesto extends Empleado{
     //NOTA PARA LAS FUNCIONES: calcular cada vez que se ingrese una persona
     
     //inicializacion de constantes de iva e impuesto en formato de decimales
-    public Impuesto() {
+    public Impuesto(double psueldo) {
         this.afp = 0.0725;
         this.isss = .03;
         this.afp_techo = 510.76685;
         this.isss_techo = 30;
+        this.sueldo = psueldo;
     }
     
     //calculo del afp con su respectivo techo

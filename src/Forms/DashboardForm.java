@@ -15,6 +15,9 @@ import com.sun.awt.AWTUtilities;
 import java.awt.BorderLayout;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -335,7 +338,12 @@ public class DashboardForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_minActionPerformed
 
     private void btn_AgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarEmpleadoActionPerformed
-        agregarEmpleadoFrmI empleadoFrm = new agregarEmpleadoFrmI();
+        agregarEmpleadoFrmI empleadoFrm = null;
+        try {
+            empleadoFrm = new agregarEmpleadoFrmI();
+        } catch (SQLException ex) {
+            Logger.getLogger(DashboardForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         empleadoFrm.setSize(anchoPanel, altoPanel);
         empleadoFrm.setLocation(0, 0);
         

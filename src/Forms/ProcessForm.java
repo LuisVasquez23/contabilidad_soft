@@ -35,7 +35,7 @@ public class ProcessForm extends javax.swing.JFrame {
     public ProcessForm() {
         initComponents();
   
-        impuesto = new Impuesto();
+        impuesto = new Impuesto(200);
         model = new DefaultTableModel();
         //Para extraer la fecha de la pc
         fecha_hoy = LocalDate.now();
@@ -353,7 +353,7 @@ public class ProcessForm extends javax.swing.JFrame {
         this.impuesto.setSueldo(1500); //solo para prueba
         
 //        this.empleado.setSueldo(Double.parseDouble(this.jftSueldo.getText().trim())); este no debe de llevar coma al momentode pasar de mil porque da error al convertir a double
-        this.impuesto.setAnio_contrato(this.jDateAñoContrato.getDate()); //REVISIOn
+//        this.impuesto.setAnio_contrato(this.jDateAñoContrato.getDate()); //REVISIOn
         this.impuesto.setPago_Extra(this.jcbMesVacaciones.getSelectedItem().toString());//REVISIOn
     }
     public void calculo_renta(){
