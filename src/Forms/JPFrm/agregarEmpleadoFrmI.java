@@ -258,7 +258,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarEmpleadoActionPerformed
-        String nombre, cargo, periodo = "", concat, nit = "", mes_vac = "", fecha = "";
+        String nombre, cargo, periodo = "", concat, nit = "", mes_vac = null, fecha = "";
         double sueldo = 0, resta_anio = 0, resta_mes = 0, resta_dia = 0;
         Date fecha_contratacion;
         formato = new SimpleDateFormat("dd-MM-yyyy");     
@@ -375,7 +375,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         empleado.setNombre(pnombre);
         empleado.setCargo(pcargo);
         empleado.setPeriodo_Pago(pPeriodo);
-        empleado.setfecha_contrato(pfecha);
+        empleado.setFecha_contrato(pfecha);
         empleado.setSueldo(psueldo);
         empleado.setMes_vac(mes_vac);
         

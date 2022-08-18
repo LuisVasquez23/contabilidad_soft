@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportBoletaPago" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44179a88-a64f-4910-8d6b-ab08963a2f8a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pnit" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT em.nombre as nombre, im.mes as mes, ((em.sueldo+im.bono+im.horas_extras)-(im.isss + im.afp+im.renta)) as gravado, im.renta as renta, im.afp as afp, im.isss as isss, em.sueldo as sueldo from empleado em
+join impuesto im on em.NIT = im.NIT
+where em.NIT = $P{pnit}
+UNION ALL
+SELECT em.nombre, im.mes, sum(((em.sueldo+im.bono+im.horas_extras)-(im.isss + im.afp+im.renta))) as gravado, sum(im.renta), sum(im.afp), sum(im.isss), sum(em.sueldo) from empleado em
+join impuesto im on em.NIT = im.NIT
+where em.NIT = $P{pnit};]]>
+	</queryString>
+	<field name="nombre" class="java.lang.Object"/>
+	<field name="mes" class="java.lang.Object"/>
+	<field name="gravado" class="java.lang.Object"/>
+	<field name="renta" class="java.lang.Object"/>
+	<field name="afp" class="java.lang.Object"/>
+	<field name="isss" class="java.lang.Object"/>
+	<field name="sueldo" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="99" forecolor="#0099CC" backcolor="#009999" uuid="4a07d401-ac92-411c-b381-4901f2b88a99"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="16" y="10" width="170" height="37" forecolor="#FFFFFF" uuid="bd3e6b0c-c5bb-43c1-be68-b5aad26108d3"/>
+				<textElement>
+					<font fontName="Goudy Old Style" size="26"/>
+				</textElement>
+				<text><![CDATA[Boleta de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="61" width="106" height="24" forecolor="#FFFFFF" uuid="ffd9bb50-120a-4ed3-a7aa-17fd58095c90"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<text><![CDATA[Empleado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="61" width="350" height="24" forecolor="#FFFFFF" uuid="1a18c625-4eab-475c-a2d0-550c82204b6e"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="0" width="100" height="20" uuid="b4cc371f-e8d8-4c1c-9668-a2cd5a635f97"/>
+				<text><![CDATA[mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="76" height="20" uuid="14a89b45-70ed-440d-8340-68b3eb69961a"/>
+				<text><![CDATA[gravado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="0" width="67" height="20" uuid="65d0b882-ab70-4173-af27-abbbea627f49"/>
+				<text><![CDATA[renta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="0" width="75" height="20" uuid="87632f43-780b-423e-ae29-9d49af40e97e"/>
+				<text><![CDATA[afp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="0" width="76" height="20" uuid="0255f86d-7f48-47ce-9670-1a19ede88b89"/>
+				<text><![CDATA[isss]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="472" y="0" width="100" height="20" uuid="1bdfa118-3086-4642-ad6f-1b2ce0801a1f"/>
+				<text><![CDATA[sueldo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="100" height="20" uuid="48706b2e-d2ff-439e-a44a-86a42d1d2108"/>
+				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="76" height="20" uuid="3eba8db0-5269-4c10-8262-293806f74272"/>
+				<textFieldExpression><![CDATA[""+$F{gravado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="0" width="67" height="20" uuid="e9c3373b-96af-4d5f-b21f-684af3c3e0a1"/>
+				<textFieldExpression><![CDATA[""+$F{renta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="75" height="20" uuid="877bbd80-7954-4f20-8dcd-0f6b35d32b37"/>
+				<textFieldExpression><![CDATA[""+$F{afp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="0" width="76" height="20" uuid="f4b1b224-e86d-4056-9cef-3afaf6d001aa"/>
+				<textFieldExpression><![CDATA[""+$F{isss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="0" width="100" height="20" uuid="c2fb1951-4a62-4058-9596-d89c0994c793"/>
+				<textFieldExpression><![CDATA[""+$F{sueldo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -135,6 +135,9 @@
           <Image iconType="3" name="/Assets/Icons/btn_realizarPagohover.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -208,6 +211,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_limpiarDatosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="Helpers.TextField" name="bono_input">
       <Properties>

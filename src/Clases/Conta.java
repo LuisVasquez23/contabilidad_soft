@@ -61,26 +61,36 @@ public class Conta {
 //        
         Conexion conn = new Conexion();
         scripts scrip = new scripts();
+        Empleado emple = new Empleado();
         ResultSet rs = null;
         
-        int id = 0;
-        String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
-        String cargo = JOptionPane.showInputDialog("Ingrese el cargo");
-        String peri = JOptionPane.showInputDialog("Ingrese el periodo");
-        double sueldo = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el sueldo"));
-        String fecha = JOptionPane.showInputDialog("Ingrese el fecha");
+//        emple.setNit(JOptionPane.showInputDialog("Nit"));
+//        emple.setNombre(JOptionPane.showInputDialog("Ingrese el nombre"));
+//        emple.setCargo(JOptionPane.showInputDialog("Ingrese el cargo"));
+//        emple.setPeriodo_Pago(JOptionPane.showInputDialog("Ingrese el periodo"));
+//        emple.setSueldo(Double.parseDouble(JOptionPane.showInputDialog("Ingrese el sueldo")));
+//        emple.setFecha_contrato(JOptionPane.showInputDialog("Ingrese el fecha"));
+//        
+//        conn.Conexion();
+//        conn.agregar(scrip.mostrar_datos_empleado(), emple);
+        
+        String nit, nombre, cargo, peri, fecha;
+        double sueldo;
+        conn.Conexion();
         
         try {
             rs = conn.consultar(scrip.mostrar_datos_empleado());
+            
             while (rs.next()) {
-                id = rs.getInt(1);
+                nit = rs.getString(1);
                 nombre = rs.getString(2);
                 cargo = rs.getString(3);
                 peri = rs.getString(4);
                 sueldo = rs.getDouble(5);
                 fecha = rs.getString(6);
+                JOptionPane.showMessageDialog(null, nit+" "+nombre+" "+cargo+" "+peri+" "+sueldo+" "+fecha);
             }
-            JOptionPane.showMessageDialog(null, id+" "+nombre+" "+cargo+" "+peri+" "+sueldo+" "+fecha);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }

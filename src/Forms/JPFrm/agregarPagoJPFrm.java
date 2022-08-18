@@ -5,6 +5,17 @@
  */
 package Forms.JPFrm;
 
+import Clases.Impuesto;
+import Clases.scripts;
+import Conexion.Conexion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luis
@@ -14,8 +25,27 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
     /**
      * Creates new form agregarPagoJPFrm
      */
+    Conexion conn;
+    scripts sc;
+    Impuesto imp;
+    ResultSet rs;
+    SimpleDateFormat formato;
+    Date fecha_actual;
     public agregarPagoJPFrm() {
         initComponents();
+        conn = new Conexion();
+        sc = new scripts();
+        fecha_actual = new Date();
+    }
+    public void limpiar(){
+        this.bono_input.setText("");
+        this.carnet_input.setText("");
+        this.salario_input.setText("");
+        this.horasExtras_input.setText("");
+        this.fecha_showInput.setText("");
+        this.ISS_showInput.setText("");
+        this.AFP_showInput.setText("");
+        this.renta_showInput.setText("");
     }
 
     /**
@@ -58,6 +88,11 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_realizarPagohover.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel2.setText("Informacion de pago");
@@ -87,6 +122,11 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         btn_limpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
         btn_limpiarDatos.setText("Limpiar datos");
         btn_limpiarDatos.setBorder(null);
+        btn_limpiarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarDatosActionPerformed(evt);
+            }
+        });
 
         bono_input.setForeground(new java.awt.Color(102, 102, 102));
         bono_input.setText("$ ");
@@ -158,6 +198,84 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            conn.Conexion();
+            double salario_final = Double.parseDouble(this.salario_input.getText())+Double.parseDouble(this.bono_input.getText())+Double.parseDouble(this.horasExtras_input.getText());
+            this.imp = new Impuesto(salario_final);
+            this.imp.setNit(this.carnet_input.getText());
+            this.imp.calculo_afp();
+            this.imp.calculo_isss();
+            this.imp.calculo_vacacion();
+            this.imp.sueldo_sin_renta();
+
+            if(this.imp.getSueldo_con_descuentos() >= 0.01 && this.imp.getSueldo_con_descuentos() <= 472){
+                this.renta_showInput.setText(Double.toString(this.imp.getSueldo_con_descuentos()));
+            }
+            else if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
+                this.imp.sueldo_2tramo();
+                this.renta_showInput.setText(Double.toString(this.imp.getResul_genrl()));
+            }
+            else if(this.imp.getSueldo_con_descuentos() >= 895.25 && this.imp.getSueldo_con_descuentos() <= 2038.10){
+                this.imp.sueldo_3tramo();
+                this.renta_showInput.setText(Double.toString(this.imp.getResul_genrl()));
+            }
+            else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
+                this.imp.sueldo_4tramo();
+                this.renta_showInput.setText(Double.toString(this.imp.getResul_genrl()));
+            }
+
+            int fecha = this.fecha_actual.getMonth()+1;
+            JOptionPane.showMessageDialog(null, fecha);
+            this.imp.setMes(this.string_meses(fecha));
+            this.fecha_showInput.setText(this.imp.getMes());
+            this.ISS_showInput.setText(""+this.imp.getResul_isss());
+            this.AFP_showInput.setText(""+this.imp.getResul_afp());
+            
+            for (int i = 1; i < 13; i++) {
+                this.imp.setMes(this.string_meses(i));
+                this.conn.agregar_impuesto(this.sc.ingresar_impuesto(), imp);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_limpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarDatosActionPerformed
+        this.limpiar();
+    }//GEN-LAST:event_btn_limpiarDatosActionPerformed
+
+    public String string_meses(int index){
+        String mes = "";
+        switch(index){
+            
+            case 1: mes = "Enero";
+                break;
+            case 2: mes = "Febrero";
+                break;
+            case 3: mes = "Marzo";
+                break;
+            case 4: mes = "Abril";
+                break;
+            case 5: mes = "Mayo";
+                break;
+            case 6: mes = "Junio";
+                break;
+            case 7: mes = "Julio";
+                break;
+            case 8: mes = "Agosto";
+                break;
+            case 9: mes = "Septiembre";
+                break;
+            case 10: mes = "Octubre";
+                break;
+            case 11: mes = "Noviembre";
+                break;
+            case 12: mes = "Diciembre";
+                break;
+        }
+        return mes;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Helpers.TextField AFP_showInput;
