@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPatronal" language="groovy" pageWidth="800" pageHeight="792" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14a92f19-5688-48be-8291-4f681b573857">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pnit" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select NIT,nombre, fecha_contrato, cargo, sueldo, bono, (sueldo + bono)as ingreso, (sueldo*0.0775) as AFP, (sueldo * 0.075) as isss, (1000*.1)as insaford,
+ ((sueldo*0.0775)+(sueldo * 0.075) + (1000*.1))as total  from empleado
+where NIT = $P{pnit};]]>
+	</queryString>
+	<field name="NIT" class="java.lang.Object"/>
+	<field name="nombre" class="java.lang.Object"/>
+	<field name="fecha_contrato" class="java.lang.Object"/>
+	<field name="cargo" class="java.lang.Object"/>
+	<field name="sueldo" class="java.lang.Object"/>
+	<field name="bono" class="java.lang.Object"/>
+	<field name="ingreso" class="java.lang.Object"/>
+	<field name="AFP" class="java.lang.Object"/>
+	<field name="isss" class="java.lang.Object"/>
+	<field name="insaford" class="java.lang.Object"/>
+	<field name="total" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="127" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="760" height="127" backcolor="#006666" uuid="2ad09a42-8c2f-44c1-842c-1e2b0f02ff18"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="42" y="13" width="159" height="30" forecolor="#FFFFFF" uuid="d62e8bca-1ae6-4ee6-ab7d-3a436ab9da62"/>
+				<textElement>
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[Plantilla patronal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="56" width="75" height="21" forecolor="#FFFFFF" uuid="aab4b4d5-3bc3-40e8-bf7d-d9496e8cef1f"/>
+				<textElement>
+					<font fontName="Courier New" size="16"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="94" width="52" height="21" forecolor="#FFFFFF" uuid="20d70cde-72dd-4aa6-83e3-12f2a020e37d"/>
+				<textElement>
+					<font fontName="Courier New" size="16"/>
+				</textElement>
+				<text><![CDATA[NIT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="101" y="94" width="209" height="21" forecolor="#FFFFFF" uuid="f0a906c2-6ef1-43ce-8ea5-e7b0e07cb774"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{NIT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="56" width="446" height="21" forecolor="#FFFFFF" uuid="5d0a9e91-6dad-4ec5-8776-b6698d1bf70c"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="644" y="13" width="117" height="30" forecolor="#FFFFFF" uuid="a7c12bdd-9bb3-4e51-a7a1-c6a85083cdb4"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="58" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="760" height="41" backcolor="#660000" uuid="0a1288a9-5d45-4169-9973-027cea529eb8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="11" width="114" height="20" forecolor="#FFFFFF" uuid="3b7889b8-fa8f-4bb6-8387-4a86071aa50f"/>
+				<text><![CDATA[Fecha de contratación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="11" width="71" height="20" forecolor="#FFFFFF" uuid="1eb29f6a-6cad-4bfc-b475-930dd5edccc1"/>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="11" width="72" height="20" forecolor="#FFFFFF" uuid="47c94ccd-9ad2-486d-a4d3-35a117c98541"/>
+				<text><![CDATA[Sueldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="11" width="82" height="20" forecolor="#FFFFFF" uuid="b10e5db2-daf1-45d7-933b-33a4acf8e14f"/>
+				<text><![CDATA[Bono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="11" width="80" height="20" forecolor="#FFFFFF" uuid="484587d9-f4c0-494f-873c-94aefec405c5"/>
+				<text><![CDATA[Total salario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="11" width="69" height="20" forecolor="#FFFFFF" uuid="bcf50412-8c10-44ad-a4f4-8da15366260e"/>
+				<text><![CDATA[AFP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="573" y="11" width="47" height="20" forecolor="#FFFFFF" uuid="94296bc9-ccae-47db-ae00-7d479245e470"/>
+				<text><![CDATA[ISSS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="630" y="11" width="60" height="20" forecolor="#FFFFFF" uuid="80af9d43-1499-483d-84d3-a6c7dcb07a48"/>
+				<text><![CDATA[insaford]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="11" width="70" height="20" forecolor="#FFFFFF" uuid="c369f904-81a7-4ab0-b640-5fef49c4d2bf"/>
+				<text><![CDATA[total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="114" height="20" uuid="06a95bf3-77c0-4894-9b8d-ae66a6e8260e"/>
+				<textFieldExpression><![CDATA[""+$F{fecha_contrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="71" height="20" uuid="56233beb-ddf5-45f1-a974-96ab788e8f04"/>
+				<textFieldExpression><![CDATA[""+$F{cargo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="72" height="20" uuid="c49fd8fd-54c9-420b-bcb4-8a725afbd17f"/>
+				<textFieldExpression><![CDATA[""+$F{sueldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="0" width="82" height="20" uuid="9915ca3d-c274-4e0b-acc3-38a071be48c1"/>
+				<textFieldExpression><![CDATA[""+$F{bono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="0" width="80" height="20" uuid="978c8467-9698-482e-b0b2-08b8123405b3"/>
+				<textFieldExpression><![CDATA[""+$F{ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="487" y="0" width="69" height="20" uuid="347ea3e2-0aef-4d3c-88fb-6c35e2661dc6"/>
+				<textFieldExpression><![CDATA[""+$F{AFP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="562" y="0" width="68" height="20" uuid="5a8f33e4-fbf7-4a4f-88c3-2c8dbc23c124"/>
+				<textFieldExpression><![CDATA[""+$F{isss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="630" y="0" width="69" height="20" uuid="0ae4e474-d4ae-49c1-b05b-4fd361443ffd"/>
+				<textFieldExpression><![CDATA[""+$F{insaford}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="0" width="70" height="20" uuid="d5ba6efe-ab2f-4a5a-a6e0-b8aed017e45e"/>
+				<textFieldExpression><![CDATA[""+$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

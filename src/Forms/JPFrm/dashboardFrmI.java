@@ -6,7 +6,18 @@
 package Forms.JPFrm;
 
 import java.awt.BorderLayout;
-
+import javax.swing.JOptionPane;
+import Conexion.Conexion;
+import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import Clases.*;
 /**
  *
  * @author luis
@@ -15,10 +26,15 @@ public class dashboardFrmI extends javax.swing.JPanel {
 
     int anchoPanel = 952;
     int altoPanel = 650;
+    Conexion conn;
+    ResultSet rs;
+    scripts sc;
     
     public dashboardFrmI() {
         initComponents();
-       
+        conn = new Conexion();
+        rs = null;
+        sc = new scripts();
     }
 
     /**
@@ -31,6 +47,8 @@ public class dashboardFrmI extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btn_limpiarDatos = new javax.swing.JButton();
+        btn_generarPDF = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         materialTabbed1 = new Helpers.MaterialTabbed();
@@ -42,9 +60,33 @@ public class dashboardFrmI extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         plantillaPatronalPane = new javax.swing.JPanel();
+        nit_input = new Helpers.TextField();
+        btn_limpiarDatos1 = new javax.swing.JButton();
+        btn_generarPDF1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
+
+        btn_limpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
+        btn_limpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_limpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_limpiarDatos.setText("Limpiar datos");
+        btn_limpiarDatos.setBorder(null);
+        btn_limpiarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarDatosActionPerformed(evt);
+            }
+        });
+
+        btn_generarPDF.setBackground(new java.awt.Color(153, 153, 255));
+        btn_generarPDF.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_generarPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btn_generarPDF.setText("Generar PDF");
+        btn_generarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_generarPDFActionPerformed(evt);
+            }
+        });
 
         setMaximumSize(new java.awt.Dimension(891, 604));
         setPreferredSize(new java.awt.Dimension(891, 604));
@@ -114,15 +156,59 @@ public class dashboardFrmI extends javax.swing.JPanel {
 
         materialTabbed1.addTab("Dashboard", dashPane);
 
+        plantillaPatronalPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        nit_input.setForeground(new java.awt.Color(102, 102, 102));
+        nit_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        nit_input.setLabelText("NIT");
+
+        btn_limpiarDatos1.setBackground(new java.awt.Color(255, 102, 102));
+        btn_limpiarDatos1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_limpiarDatos1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_limpiarDatos1.setText("Limpiar datos");
+        btn_limpiarDatos1.setBorder(null);
+        btn_limpiarDatos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarDatos1ActionPerformed(evt);
+            }
+        });
+
+        btn_generarPDF1.setBackground(new java.awt.Color(153, 153, 255));
+        btn_generarPDF1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        btn_generarPDF1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_generarPDF1.setText("Generar PDF");
+        btn_generarPDF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_generarPDF1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout plantillaPatronalPaneLayout = new javax.swing.GroupLayout(plantillaPatronalPane);
         plantillaPatronalPane.setLayout(plantillaPatronalPaneLayout);
         plantillaPatronalPaneLayout.setHorizontalGroup(
             plantillaPatronalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 831, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plantillaPatronalPaneLayout.createSequentialGroup()
+                .addGroup(plantillaPatronalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(plantillaPatronalPaneLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_generarPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                        .addComponent(btn_limpiarDatos1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(plantillaPatronalPaneLayout.createSequentialGroup()
+                        .addComponent(nit_input, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(21, 21, 21))
         );
         plantillaPatronalPaneLayout.setVerticalGroup(
             plantillaPatronalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGroup(plantillaPatronalPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nit_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addGroup(plantillaPatronalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_limpiarDatos1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_generarPDF1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         materialTabbed1.addTab("Planilla Patronal", plantillaPatronalPane);
@@ -168,8 +254,71 @@ public class dashboardFrmI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_limpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarDatosActionPerformed
+       
+    }//GEN-LAST:event_btn_limpiarDatosActionPerformed
+
+    private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
+        
+    }//GEN-LAST:event_btn_generarPDFActionPerformed
+
+    private void btn_limpiarDatos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarDatos1ActionPerformed
+    this.nit_input.setText("");
+    }//GEN-LAST:event_btn_limpiarDatos1ActionPerformed
+
+    private void btn_generarPDF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDF1ActionPerformed
+        String nit = this.nit_input.getText();
+        if (nit.length() == 17) {
+            this.genenrar_pdf(nit);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error en el nit");
+        }
+    }//GEN-LAST:event_btn_generarPDF1ActionPerformed
+
+    public void genenrar_pdf(String pnit){
+        conn.Conexion();        
+        JasperReport reporte;
+        String path = "src\\Reportes\\reportPatronal.jasper";
+        int band = 0;
+        
+        try {
+            rs = this.conn.consulta_impuesto(sc.buscar_empleado(), pnit);
+            while (rs.next()) {
+                band++;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar en la base de datos");
+        }
+        
+        
+        if (band > 0) {
+            try {
+                Map parametro = new HashMap();
+                parametro.put("pnit", pnit);
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                JasperPrint printreport = JasperFillManager.fillReport(reporte, parametro, conn.conex);
+                JasperViewer view = new JasperViewer(printreport, false);
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                view.setVisible(true);
+                 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se encontró el empleado");
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_generarPDF;
+    private javax.swing.JButton btn_generarPDF1;
+    private javax.swing.JButton btn_limpiarDatos;
+    private javax.swing.JButton btn_limpiarDatos1;
     private javax.swing.JPanel dashPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -182,6 +331,7 @@ public class dashboardFrmI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private Helpers.MaterialTabbed materialTabbed1;
+    private Helpers.TextField nit_input;
     private javax.swing.JPanel plantillaPatronalPane;
     // End of variables declaration//GEN-END:variables
 }

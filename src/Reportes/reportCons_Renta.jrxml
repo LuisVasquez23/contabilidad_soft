@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportCons_Renta" language="groovy" pageWidth="720" pageHeight="450" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e5fd603-ace2-4cb6-9a41-52c75d610623">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pnit" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select em.nombre, em.NIT, sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)) as ingreso,
+sum(im.sueldo_gravado)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, sum(im.renta) as isr,
+(sum(im.afp) + sum(im.isss) + sum(im.renta)) as descuento, ((sum(em.sueldo) + sum(im.bono)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))) as pagado
+from empleado em
+join impuesto im on em.NIT = em.NIT
+where em.NIT = $P{pnit};]]>
+	</queryString>
+	<field name="nombre" class="java.lang.Object"/>
+	<field name="NIT" class="java.lang.Object"/>
+	<field name="sueldo" class="java.lang.Object"/>
+	<field name="comision" class="java.lang.Object"/>
+	<field name="ingreso" class="java.lang.Object"/>
+	<field name="gravado" class="java.lang.Object"/>
+	<field name="afp" class="java.lang.Object"/>
+	<field name="isss" class="java.lang.Object"/>
+	<field name="isr" class="java.lang.Object"/>
+	<field name="descuento" class="java.lang.Object"/>
+	<field name="pagado" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="159" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="680" height="159" backcolor="#000000" uuid="b2f11c16-974a-4eea-8e88-8c20e626e69c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="35" y="17" width="191" height="29" forecolor="#FFFFFF" uuid="d88c65ca-010b-4016-9d29-5ec73fdb5fb5"/>
+				<textElement>
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[Constancia de renta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="63" width="88" height="23" forecolor="#FFFFFF" uuid="3fa49357-35fb-4cb5-b947-195c1318003d"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="530" y="17" width="150" height="29" forecolor="#FFFFFF" uuid="5f30f872-188e-41bc-a990-bdebbd83aa92"/>
+				<textElement>
+					<font fontName="Times New Roman" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="63" width="323" height="27" forecolor="#FFFFFF" uuid="7b135c57-f7ac-4201-8a22-101cdce95812"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="35" y="110" width="49" height="23" forecolor="#FFFFFF" uuid="a89c31a3-f167-4ccb-b136-db6a7af499b0"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<text><![CDATA[NIT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="94" y="112" width="273" height="21" forecolor="#FFFFFF" uuid="b3b5c9c9-6fd2-4a73-b012-5604ba89e232"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{NIT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="64" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="680" height="45" forecolor="#990000" backcolor="#990000" uuid="4d9c780c-0d4a-4573-afa8-d43a78ae3ef4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="595" y="13" width="81" height="20" forecolor="#FFFFFF" uuid="0b50fe73-beda-4efa-a004-aa968741f4d1"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[pagado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="509" y="13" width="59" height="20" forecolor="#FFFFFF" uuid="76b4a01b-20c0-42c0-88a5-5afd734f8336"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[descuento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="11" width="64" height="20" forecolor="#FFFFFF" uuid="46e2ec21-7163-4ec0-a663-c6c85bce12fa"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[afp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="11" width="85" height="18" forecolor="#FFFFFF" uuid="b5f1174d-6446-4917-86cb-f17d4a3ae77d"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Comisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="13" width="48" height="20" forecolor="#FFFFFF" uuid="e32c7c16-a468-4a02-814c-837a99d483e8"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[isss]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="11" width="80" height="20" forecolor="#FFFFFF" uuid="c2553574-d72d-49c6-9766-b91dd519ccdb"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Sueldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="11" width="74" height="20" forecolor="#FFFFFF" uuid="8c568fdb-94d1-4988-8b9e-e203b581f009"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="11" width="71" height="20" forecolor="#FFFFFF" uuid="26f2f7a7-8410-4904-982f-e777504ca8c5"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Gravado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="80" height="20" uuid="a61637ed-cee9-427b-88d3-31ba928d736f"/>
+				<textFieldExpression><![CDATA[""+$F{sueldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="85" height="20" uuid="8c1b3c82-c14c-49bf-ac68-a1aa0b05e5f1"/>
+				<textFieldExpression><![CDATA[""+$F{comision}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="0" width="74" height="20" uuid="a87b4306-4806-4bcf-a01f-5e148be4bc1e"/>
+				<textFieldExpression><![CDATA[""+$F{ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="71" height="20" uuid="21c6ef29-223a-43f5-91f4-9908eaefc4aa"/>
+				<textFieldExpression><![CDATA[""+$F{gravado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="0" width="64" height="20" uuid="4c686d54-b1e8-4fb7-aca9-1f62d63662cd"/>
+				<textFieldExpression><![CDATA[""+$F{afp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="0" width="68" height="20" uuid="5b54ef22-1f9f-4fd5-bd1f-acf7ed5d7cab"/>
+				<textFieldExpression><![CDATA[""+$F{isss}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="0" width="86" height="20" uuid="607c2d35-25dc-47d2-a9dd-3bba9616115b"/>
+				<textFieldExpression><![CDATA[""+$F{descuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="599" y="0" width="81" height="20" uuid="7ca1fc91-59bd-4647-bb7e-9db18e79471a"/>
+				<textFieldExpression><![CDATA[""+$F{pagado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

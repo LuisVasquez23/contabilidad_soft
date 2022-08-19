@@ -51,6 +51,13 @@ public class Conexion {
         pst.setString(1, pnit);
         return pst.executeQuery();
     }
+    
+//    public ResultSet consulta_cons_Renta(String query, String pnit) throws SQLException{
+//        PreparedStatement pst = conex.prepareStatement(query);
+//        pst.setString(1, pnit);
+//        return pst.executeQuery();
+//    }
+    
     //funciones de werner
     
     //funciones de mario
@@ -68,6 +75,11 @@ public class Conexion {
             pst.setDouble(8, impuesto.getResul_genrl());
             //ejecutar el el comando de ingreso de datos
             pst.execute();             
+    }
+    
+    public ResultSet consulta_select(String query) throws SQLException{
+        PreparedStatement pst = conex.prepareStatement(query);
+        return pst.executeQuery();
     }
     //funciones de mario
 }

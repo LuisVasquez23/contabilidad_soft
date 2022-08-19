@@ -82,7 +82,7 @@ public class infoForm extends javax.swing.JFrame {
         btn_min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min.png"))); // NOI18N
         btn_min.setBorderPainted(false);
         btn_min.setContentAreaFilled(false);
-        btn_min.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_min.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_min.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_min.setName(""); // NOI18N
         btn_min.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_min_hover.png"))); // NOI18N
@@ -95,7 +95,7 @@ public class infoForm extends javax.swing.JFrame {
         btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_close.png"))); // NOI18N
         btn_close.setBorderPainted(false);
         btn_close.setContentAreaFilled(false);
-        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_close.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_close_hover.png"))); // NOI18N
         btn_close.setVerifyInputWhenFocusTarget(false);
@@ -155,10 +155,10 @@ public class infoForm extends javax.swing.JFrame {
         jLabel3.setText("Integrantes:");
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setText("Vasquez Aquila, Luis Enrique");
+        jLabel4.setText("Palma Miranda, Mario Enrique");
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel5.setText("Vasquez Aquila, Luis Enrique");
+        jLabel5.setText("Toledo Diaz, Werner Alejandro");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel6.setText("Vasquez Aquila, Luis Enrique");

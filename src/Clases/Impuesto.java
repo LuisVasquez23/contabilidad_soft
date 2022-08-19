@@ -79,7 +79,7 @@ public class Impuesto extends Empleado{
         suma_impu = resul_afp + resul_isss;
         total = sueldo - suma_impu;
         sueldo_con_descuentos = total;
-        resul_genrl = total;
+        resul_genrl = 0;
     }
     
     //evaluacion del tramo 2

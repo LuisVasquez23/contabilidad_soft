@@ -111,9 +111,14 @@
         </Property>
         <Property name="labelText" type="java.lang.String" value="Carnet"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carnet_inputKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carnet_inputKeyReleased"/>
+      </Events>
     </Component>
     <Component class="Helpers.TextField" name="salario_input">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>

@@ -264,11 +264,26 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
 
     private void btn_limpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarDatosActionPerformed
         this.limpiar();
+        this.btn_buscarEmpleado.setEnabled(true);
         this.btn_generarPDF.setEnabled(false);
     }//GEN-LAST:event_btn_limpiarDatosActionPerformed
 
     private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
-        this.genenrar_pdf(this.nit_input.getText());
+        int index = this.jTable1.getSelectedRow();
+        String mes, nit;
+        nit = this.nit_input.getText();
+        if (index > -1) {
+            if (nit.length() ==17) {
+                mes = ((((DefaultTableModel)this.jTable1.getModel()).getValueAt(index, 1).toString()));
+                this.genenrar_pdf(nit, mes);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No existe ese empleado");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione un valor de la tabla");
+        }
     }//GEN-LAST:event_btn_generarPDFActionPerformed
 
   
@@ -279,13 +294,12 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
        
         try {
             //declaracion de los campos de la tabla
-            String[] nombreColum = {"#", "Mes", "Gravados", "Retencion mensual", "AFP", "ISSS", "Ingresos devengados"};
+            String[] nombreColum = {"#", "Mes", "Gravado", "Retencion mensual", "AFP", "ISSS", "Ingresos devengados"};
             model.setColumnIdentifiers(nombreColum);
             
             //Consulta y obtencion de datos 
             rs = conn.consulta_impuesto(sc.cosulta_impuesto(), pnit);
-            String mes;
-            double renta, afp, isss, sueldo, gravados, sum_renta = 0, sum_afp = 0, sum_isss = 0, sum_sueldo = 0, sum_gravado = 0;
+            double sum_renta = 0, sum_afp = 0, sum_isss = 0, sum_sueldo = 0, sum_gravado = 0;
             int id = 0;
             
             //Cargar la tabla y lista de la clase impuesto
@@ -331,7 +345,7 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
     }
     
     
-    public void genenrar_pdf(String pnit){
+    public void genenrar_pdf(String pnit, String pmes){
         conn.Conexion();        
         JasperReport reporte;
         String path = "src\\Reportes\\reportBoletaPago.jasper";
@@ -339,6 +353,7 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
         try {
             Map parametro = new HashMap();
             parametro.put("pnit", pnit);
+            parametro.put("pmes", pmes);
             
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             
@@ -350,7 +365,6 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
-        
     }
    
 

@@ -8,6 +8,7 @@ package Forms.JPFrm;
 import Clases.Impuesto;
 import Clases.scripts;
 import Conexion.Conexion;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -78,7 +79,16 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         carnet_input.setForeground(new java.awt.Color(102, 102, 102));
         carnet_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         carnet_input.setLabelText("Carnet");
+        carnet_input.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                carnet_inputKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                carnet_inputKeyReleased(evt);
+            }
+        });
 
+        salario_input.setEditable(false);
         salario_input.setForeground(new java.awt.Color(102, 102, 102));
         salario_input.setText("$ ");
         salario_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
@@ -210,7 +220,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
             this.imp.sueldo_sin_renta();
 
             if(this.imp.getSueldo_con_descuentos() >= 0.01 && this.imp.getSueldo_con_descuentos() <= 472){
-                this.renta_showInput.setText(Double.toString(this.imp.getSueldo_con_descuentos()));
+                this.renta_showInput.setText(""+0);
             }
             else if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
                 this.imp.sueldo_2tramo();
@@ -244,6 +254,35 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
     private void btn_limpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarDatosActionPerformed
         this.limpiar();
     }//GEN-LAST:event_btn_limpiarDatosActionPerformed
+
+    private void carnet_inputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carnet_inputKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                conn.Conexion();
+                ResultSet rs = null;
+
+                rs = conn.consulta_select(sc.extraer_sueldo(this.carnet_input.getText()));
+                double sueldo = 0;
+
+            while(rs.next()){
+                sueldo = rs.getDouble(1);
+            }
+            if (sueldo > 0) {
+                this.salario_input.setText(Double.toString(sueldo));
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No existe el empleado");
+            }
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(agregarPagoJPFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_carnet_inputKeyPressed
+
+    private void carnet_inputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carnet_inputKeyReleased
+        
+    }//GEN-LAST:event_carnet_inputKeyReleased
 
     public String string_meses(int index){
         String mes = "";
