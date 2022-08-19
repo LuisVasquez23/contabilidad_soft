@@ -21,10 +21,6 @@ public class Impuesto extends Empleado{
     private double sueldo;
     
     private double sueldo_con_descuentos;
-   
-    private double resu_2tramo;
-    private double resu_3tramo;
-    private double resu_4tramo;
     
     private double resu_vacacion;
     private double resu_aguinaldo;
@@ -83,6 +79,7 @@ public class Impuesto extends Empleado{
         suma_impu = resul_afp + resul_isss;
         total = sueldo - suma_impu;
         sueldo_con_descuentos = total;
+        resul_genrl = total;
     }
     
     //evaluacion del tramo 2
@@ -95,7 +92,7 @@ public class Impuesto extends Empleado{
         resta_sobreex = sueldo_con_descuentos - cons_sobre_exc;
         multi_porcentaje = resta_sobreex * cons_porcen;
         total = multi_porcentaje + cons_cuoFija;
-        resu_2tramo = total;
+        resul_genrl = total;
     }
     
     //evaluacion del tramo 3
@@ -108,7 +105,7 @@ public class Impuesto extends Empleado{
         resta_sobreex = sueldo_con_descuentos - cons_sobre_exc;
         multi_porcentaje = resta_sobreex * cons_porcen;
         total = multi_porcentaje + cons_cuoFija;
-        resu_3tramo = total;
+        resul_genrl = total;
     }
     
     //evaluacion del tramo 4
@@ -121,7 +118,7 @@ public class Impuesto extends Empleado{
         resta_sobreex = sueldo_con_descuentos - cons_sobre_exc;
         multi_porcentaje = resta_sobreex * cons_porcen;
         total = multi_porcentaje + cons_cuoFija;
-        resu_4tramo = total;
+        resul_genrl = total;
     }
     
     
@@ -165,18 +162,6 @@ public class Impuesto extends Empleado{
         
     public double getSueldo_con_descuentos() {
         return sueldo_con_descuentos;
-    }
-
-    public double getResu_2tramo() {
-        return resu_2tramo;
-    }
-
-    public double getResu_3tramo() {
-        return resu_3tramo;
-    }
-
-    public double getResu_4tramo() {
-        return resu_4tramo;
     }
 
     public double getResu_vacacion() {
