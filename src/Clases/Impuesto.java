@@ -142,6 +142,29 @@ public class Impuesto extends Empleado{
        resu_vacacion = producto_porcen;
    }
 
+    
+    //funciones de mario
+    
+    //sueldo con descuentos
+    public void setSueldo_con_descuentos(double sueldo_con_descuentos) {
+        this.sueldo_con_descuentos = sueldo_con_descuentos;
+    }
+    
+    //calculo del aguinaldo de menos del anio
+    public void calculo_aguinaldo_porporcional(int pdias){
+        //declaracion de constante
+        //constantes
+        double dias = 30;
+        //variables
+        double producto, residuo, sueldo_dia, total;
+        
+        residuo = sueldo / dias;
+        producto = residuo * 15;
+        sueldo_dia = producto/365;
+        total = sueldo_dia * pdias;
+        resu_aguinaldo = total;       
+    }
+    //funciones de mario
     public void setNit(String Nit) {
         this.Nit = Nit;
     }

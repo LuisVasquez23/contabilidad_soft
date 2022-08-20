@@ -111,10 +111,6 @@
         </Property>
         <Property name="labelText" type="java.lang.String" value="Carnet"/>
       </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carnet_inputKeyPressed"/>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carnet_inputKeyReleased"/>
-      </Events>
     </Component>
     <Component class="Helpers.TextField" name="salario_input">
       <Properties>
@@ -128,6 +124,10 @@
         </Property>
         <Property name="labelText" type="java.lang.String" value="Salario"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="salario_inputMouseClicked"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="salario_inputKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>

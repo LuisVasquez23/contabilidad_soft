@@ -16,19 +16,19 @@ public class scripts {
     }
     
     public String cosulta_impuesto(){
-        String query = "SELECT im.mes, ((em.sueldo+im.bono+im.horas_extras)-(im.isss + im.afp+im.renta)) as gravado, im.renta, im.afp, im.isss, em.sueldo from empleado em "+
-                        "join impuesto im on em.NIT = im.NIT "+
-                        "where em.NIT = ?";
+        String query = "select im.mes, im.sueldo_gravado, im.renta, im.afp, im.isss, em.sueldo from empleado em " +
+                        "join impuesto im on em.NIT = im.NIT " +
+                        "where em.NIT = ?;";
         return query;
     }
     
     public String consult_constan_renta(){
-        String query = "select em.nombre, sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)) as ingreso, " +
-                        "sum(im.sueldo_gravado)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, sum(im.renta) as isr, " +
-                        "(sum(im.afp) + sum(im.isss) + sum(im.renta)) as descuento, ((sum(em.sueldo) + sum(im.bono)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))) as pagado " +
+        String query = "select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)) as ingreso, " +
+                        "round(sum(im.sueldo_gravado), 3)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, sum(im.renta) as isr, " +
+                        "round((sum(im.afp) + sum(im.isss) + sum(im.renta)),3) as descuento, round(((sum(em.sueldo) + sum(im.bono)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))), 3) as pagado " +
                         "from empleado em " +
-                        "join impuesto im on em.NIT = em.NIT " +
-                        "where em.NIT = ?;";
+                        "join impuesto im on em.NIT = im.NIT " +
+                        "where im.NIT = ?;";
         return query;
     }
     
@@ -48,6 +48,18 @@ public class scripts {
     public String extraer_sueldo(String pnit){
         String query = "select sueldo from empleado\n" +
                         "where NIT = '"+pnit+"';";
+        return query;
+    }
+    
+    public String mostrar_mes_vac(String pnit){
+        String query = "Select Upper(mes_vac) from empleado\n" +
+                        "where NIT = '"+pnit+"';";
+        return query;
+    } 
+    
+    public String mostrar_fecha_contrato(String pnit){
+        String query = "select fecha_contrato from empleado\n" +
+                       "Where NIT = '"+pnit+"';";
         return query;
     }
     //funciones de mario

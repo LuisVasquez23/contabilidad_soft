@@ -8,14 +8,17 @@ package Forms.JPFrm;
 import Clases.Impuesto;
 import Clases.scripts;
 import Conexion.Conexion;
-import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -27,16 +30,24 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
      * Creates new form agregarPagoJPFrm
      */
     Conexion conn;
+    Conexion conn2;
     scripts sc;
     Impuesto imp;
     ResultSet rs;
     SimpleDateFormat formato;
+    DecimalFormat format; 
     Date fecha_actual;
+    long resta_dias;
+    Date fecha_contratacion;
+    int sueldo = 0, resta_anio = 0, resta_mes = 0, resta_dia = 0;
     public agregarPagoJPFrm() {
         initComponents();
         conn = new Conexion();
+        conn2 = new Conexion();
         sc = new scripts();
         fecha_actual = new Date();
+        formato = new SimpleDateFormat("dd-MM-yyyy");
+        format = new DecimalFormat("###.##");
     }
     public void limpiar(){
         this.bono_input.setText("");
@@ -79,20 +90,22 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         carnet_input.setForeground(new java.awt.Color(102, 102, 102));
         carnet_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         carnet_input.setLabelText("Carnet");
-        carnet_input.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                carnet_inputKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                carnet_inputKeyReleased(evt);
-            }
-        });
 
         salario_input.setEditable(false);
         salario_input.setForeground(new java.awt.Color(102, 102, 102));
         salario_input.setText("$ ");
         salario_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         salario_input.setLabelText("Salario");
+        salario_input.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salario_inputMouseClicked(evt);
+            }
+        });
+        salario_input.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                salario_inputKeyPressed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_realizarPago.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -211,6 +224,8 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             conn.Conexion();
+            ResultSet rs = null, rss = null;
+            
             double salario_final = Double.parseDouble(this.salario_input.getText())+Double.parseDouble(this.bono_input.getText())+Double.parseDouble(this.horasExtras_input.getText());
             this.imp = new Impuesto(salario_final);
             this.imp.setNit(this.carnet_input.getText());
@@ -218,7 +233,31 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
             this.imp.calculo_isss();
             this.imp.calculo_vacacion();
             this.imp.sueldo_sin_renta();
-
+            
+            rs = conn.consulta_mes_vac(sc.mostrar_mes_vac(this.carnet_input.getText()));
+            String mes_vac = "";
+                
+            while(rs.next()){
+                mes_vac = rs.getString(1);
+            }
+            
+            rs = conn.consulta_fecha_cont(sc.mostrar_fecha_contrato(this.carnet_input.getText()));
+            String fecha = "";
+                
+            while(rs.next()){
+                fecha = rs.getString(1);
+            }
+            
+            try {
+                this.fecha_contratacion = (Date) formato.parse(fecha);
+                this.resta_anio = fecha_actual.getYear() - fecha_contratacion.getYear();
+                this.resta_mes = fecha_actual.getMonth() - fecha_contratacion.getMonth();
+                this.resta_dia = fecha_actual.getDate() - fecha_contratacion.getDate();
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(agregarPagoJPFrm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             if(this.imp.getSueldo_con_descuentos() >= 0.01 && this.imp.getSueldo_con_descuentos() <= 472){
                 this.renta_showInput.setText(""+0);
             }
@@ -235,19 +274,118 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                 this.renta_showInput.setText(Double.toString(this.imp.getResul_genrl()));
             }
 
-            int fecha = this.fecha_actual.getMonth()+1;
-            JOptionPane.showMessageDialog(null, fecha);
-            this.imp.setMes(this.string_meses(fecha));
+            int fecha_actual = this.fecha_actual.getMonth()+1;
+            this.imp.setMes(this.string_meses(fecha_actual));
             this.fecha_showInput.setText(this.imp.getMes());
             this.ISS_showInput.setText(""+this.imp.getResul_isss());
             this.AFP_showInput.setText(""+this.imp.getResul_afp());
             
             for (int i = 1; i < 13; i++) {
-                this.imp.setMes(this.string_meses(i));
+                if(this.string_meses(i).toUpperCase().equals(mes_vac)){
+                    
+                    this.imp = new Impuesto(salario_final+this.imp.getResu_vacacion());
+                    this.imp.setNit(this.carnet_input.getText());
+                    this.imp.calculo_afp();
+                    this.imp.calculo_isss();
+                    this.imp.calculo_vacacion();
+                    this.imp.sueldo_sin_renta();
+                    this.imp.setMes(this.string_meses(i));
+                    
+                    if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
+                        this.imp.sueldo_2tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 895.25 && this.imp.getSueldo_con_descuentos() <= 2038.10){
+                        this.imp.sueldo_3tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
+                        this.imp.sueldo_4tramo();
+                    }
+                    this.imp.setSueldo_con_descuentos(Double.parseDouble(format.format(this.imp.getSueldo_con_descuentos())));
+                    this.conn.agregar_impuesto(this.sc.ingresar_impuesto(), imp);
+                }   
+                else if(this.string_meses(i).equals("Diciembre")){
+                    this.imp = new Impuesto(salario_final);
+                    this.imp.setNit(this.carnet_input.getText());
+                    this.imp.calculo_afp();
+                    this.imp.calculo_isss();
+                    this.imp.calculo_vacacion();
+                    this.imp.sueldo_sin_renta();
+                    this.imp.setMes(this.string_meses(i));
+                    
+//                    JOptionPane.showMessageDialog(null, this.imp.getSueldo_con_descuentos());
+                    String fecha_completa_1 = fecha_contratacion.getDate()+"/"+fecha_contratacion.getMonth()+"/"+fecha_contratacion.getYear();
+                    String fecha_completa_2 = this.fecha_actual.getDate()+"/"+this.fecha_actual.getMonth()+"/"+this.fecha_actual.getYear();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+                    Date firstDate = sdf.parse(fecha_completa_1);
+                    Date secondDate = sdf.parse(fecha_completa_2);
+
+                    long diff = secondDate.getTime() - firstDate.getTime();
+
+                    TimeUnit time = TimeUnit.DAYS; 
+                    this.resta_dias = time.convert(diff, TimeUnit.MILLISECONDS);
+//                    JOptionPane.showMessageDialog(null, resta_dias);
+                    
+                    if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
+                        this.imp.sueldo_2tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 895.25 && this.imp.getSueldo_con_descuentos() <= 2038.10){
+                        this.imp.sueldo_3tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
+                        this.imp.sueldo_4tramo();
+                    }
+                    int resta = this.fecha_contratacion.getYear()-this.fecha_actual.getYear();
+                    
+                    JOptionPane.showMessageDialog(null, ""+resta);
+                    if(resta == 0){
+                        this.imp.calculo_aguinaldo_porporcional((int)this.resta_dias);
+                    }
+                    else if(resta <= -1 && resta > -3){
+                        this.imp.calculo_aguinaldo(15);
+                    }
+                    else if(resta <= -3 && resta > -10){
+                        this.imp.calculo_aguinaldo(19);
+                        JOptionPane.showMessageDialog(null, "3 aguinaldo "+imp.getResu_aguinaldo());
+                    }
+                    else if(resta <= -10){
+                        this.imp.calculo_aguinaldo(21);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Naira");
+                    }
+                    
+                    Double nuevo_sueldo = this.imp.getSueldo_con_descuentos()+this.imp.getResu_aguinaldo();
+                    
+                    this.imp.setSueldo_con_descuentos(Double.parseDouble(format.format(nuevo_sueldo)));
+//                    JOptionPane.showMessageDialog(null, this.imp.getResu_aguinaldo());
+//                    JOptionPane.showMessageDialog(null, this.imp.getSueldo_con_descuentos());
+                    this.conn.agregar_impuesto(this.sc.ingresar_impuesto(), imp);
+                }
+                else{
+                    this.imp = new Impuesto(salario_final);
+                    this.imp.setNit(this.carnet_input.getText());
+                    this.imp.calculo_afp();
+                    this.imp.calculo_isss();
+                    this.imp.calculo_vacacion();
+                    this.imp.sueldo_sin_renta();
+                    this.imp.setMes(this.string_meses(i));
+                    
+                    if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
+                        this.imp.sueldo_2tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 895.25 && this.imp.getSueldo_con_descuentos() <= 2038.10){
+                        this.imp.sueldo_3tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
+                        this.imp.sueldo_4tramo();
+                    }
                 this.conn.agregar_impuesto(this.sc.ingresar_impuesto(), imp);
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(agregarPagoJPFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -255,15 +393,18 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         this.limpiar();
     }//GEN-LAST:event_btn_limpiarDatosActionPerformed
 
-    private void carnet_inputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carnet_inputKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                conn.Conexion();
-                ResultSet rs = null;
+    private void salario_inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salario_inputMouseClicked
 
-                rs = conn.consulta_select(sc.extraer_sueldo(this.carnet_input.getText()));
-                double sueldo = 0;
+    }//GEN-LAST:event_salario_inputMouseClicked
 
+    private void salario_inputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salario_inputKeyPressed
+        try {
+            conn.Conexion();
+            ResultSet rs = null;
+            
+            rs = conn.consulta_select(sc.extraer_sueldo(this.carnet_input.getText()));
+            double sueldo = 0;
+                
             while(rs.next()){
                 sueldo = rs.getDouble(1);
             }
@@ -273,16 +414,11 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
             else{
                 JOptionPane.showMessageDialog(null, "No existe el empleado");
             }
-            
-            } catch (SQLException ex) {
-                Logger.getLogger(agregarPagoJPFrm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.salario_input.setText(Double.toString(sueldo));
+        } catch (SQLException ex) {
+            Logger.getLogger(agregarPagoJPFrm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_carnet_inputKeyPressed
-
-    private void carnet_inputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carnet_inputKeyReleased
-        
-    }//GEN-LAST:event_carnet_inputKeyReleased
+    }//GEN-LAST:event_salario_inputKeyPressed
 
     public String string_meses(int index){
         String mes = "";

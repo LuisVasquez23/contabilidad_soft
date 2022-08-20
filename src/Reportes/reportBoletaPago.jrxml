@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportBoletaPago" language="groovy" pageWidth="592" pageHeight="450" columnWidth="552" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44179a88-a64f-4910-8d6b-ab08963a2f8a">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportBoletaPago" language="groovy" pageWidth="750" pageHeight="450" columnWidth="710" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44179a88-a64f-4910-8d6b-ab08963a2f8a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -10,26 +10,26 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select em.nombre, em.NIT, im.mes,im.sueldo_gravado, im.bono, im.horas_extras, im.isss, im.afp, im.renta  from empleado em
-join impuesto im on em.NIT = em.NIT
-where em.NIT = $P{pnit} AND im.mes = $P{pmes};]]>
+		<![CDATA[select em.nombre, em.NIT, im.mes, im.sueldo_gravado, im.bono,im.renta, im.afp, im.isss, em.sueldo from empleado em
+join impuesto im on em.NIT = im.NIT
+where em.NIT =  $P{pnit} and im.mes = $P{pmes};]]>
 	</queryString>
 	<field name="nombre" class="java.lang.Object"/>
 	<field name="NIT" class="java.lang.Object"/>
 	<field name="mes" class="java.lang.Object"/>
 	<field name="sueldo_gravado" class="java.lang.Object"/>
 	<field name="bono" class="java.lang.Object"/>
-	<field name="horas_extras" class="java.lang.Object"/>
-	<field name="isss" class="java.lang.Object"/>
-	<field name="afp" class="java.lang.Object"/>
 	<field name="renta" class="java.lang.Object"/>
+	<field name="afp" class="java.lang.Object"/>
+	<field name="isss" class="java.lang.Object"/>
+	<field name="sueldo" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="182" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="572" height="182" forecolor="#0099CC" backcolor="#009999" uuid="4a07d401-ac92-411c-b381-4901f2b88a99"/>
+				<reportElement x="0" y="0" width="710" height="182" forecolor="#0099CC" backcolor="#009999" uuid="4a07d401-ac92-411c-b381-4901f2b88a99"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="16" y="10" width="170" height="37" forecolor="#FFFFFF" uuid="bd3e6b0c-c5bb-43c1-be68-b5aad26108d3"/>
@@ -45,13 +45,6 @@ where em.NIT = $P{pnit} AND im.mes = $P{pmes};]]>
 				</textElement>
 				<text><![CDATA[Empleado:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="220" y="102" width="332" height="24" forecolor="#FFFFFF" uuid="e6fb7b81-6332-4eb1-a0c6-a960c0ec658f"/>
-				<textElement>
-					<font fontName="Courier New" size="18" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="16" y="137" width="61" height="24" forecolor="#FFFFFF" uuid="03479170-995c-43f5-8ba1-db764964ae33"/>
 				<textElement>
@@ -59,13 +52,6 @@ where em.NIT = $P{pnit} AND im.mes = $P{pmes};]]>
 				</textElement>
 				<text><![CDATA[NIT:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="86" y="137" width="446" height="24" forecolor="#FFFFFF" uuid="46738b43-97c1-4f85-b1b4-2246ac8a971f"/>
-				<textElement>
-					<font fontName="Courier New" size="18"/>
-				</textElement>
-				<textFieldExpression><![CDATA[""+$F{NIT}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="16" y="63" width="61" height="24" forecolor="#FFFFFF" uuid="ee3aab31-0eff-43a2-a70e-3b349073fb2a"/>
 				<textElement>
@@ -73,19 +59,33 @@ where em.NIT = $P{pnit} AND im.mes = $P{pmes};]]>
 				</textElement>
 				<text><![CDATA[Mes:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="97" y="63" width="288" height="24" forecolor="#FFFFFF" uuid="425f5b91-9ce0-44e2-945c-3d80c2e2838d"/>
-				<textElement>
-					<font fontName="Courier New" size="18"/>
-				</textElement>
-				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
-			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="398" y="22" width="157" height="25" forecolor="#FFFFFF" uuid="8732d8e2-94f2-4b88-a2dc-d3ae10cc525e"/>
+				<reportElement x="552" y="10" width="157" height="25" forecolor="#FFFFFF" uuid="8732d8e2-94f2-4b88-a2dc-d3ae10cc525e"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="102" width="410" height="24" forecolor="#FFFFFF" uuid="c9151fbc-6a70-46a1-8a91-8dc62aee4b75"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="137" width="316" height="24" forecolor="#FFFFFF" uuid="52788e50-94e3-4e17-8014-e85d60c82ff4"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{NIT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="63" width="144" height="24" forecolor="#FFFFFF" uuid="0b5054fd-2d4f-4fc9-9145-6c3920fcd738"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -95,7 +95,7 @@ where em.NIT = $P{pnit} AND im.mes = $P{pmes};]]>
 	<columnHeader>
 		<band height="38" splitType="Stretch">
 			<rectangle>
-				<reportElement x="-3" y="0" width="555" height="38" backcolor="#000000" uuid="1c0b35f5-a66d-4f76-92e2-b30cccdeec4f"/>
+				<reportElement x="-3" y="0" width="713" height="38" backcolor="#000000" uuid="1c0b35f5-a66d-4f76-92e2-b30cccdeec4f"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="0" y="0" width="63" height="20" forecolor="#FFFFFF" uuid="a9cc3536-fd6d-4350-9623-6cff90d3d9a0"/>
@@ -112,60 +112,71 @@ where em.NIT = $P{pnit} AND im.mes = $P{pmes};]]>
 				<text><![CDATA[Remunearacinoes gravadas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="198" y="0" width="86" height="38" forecolor="#FFFFFF" uuid="b444ac60-f5e2-470d-a110-49c47f9736f6"/>
+				<reportElement x="309" y="0" width="68" height="38" forecolor="#FFFFFF" uuid="b444ac60-f5e2-470d-a110-49c47f9736f6"/>
 				<textElement>
 					<font fontName="Arial Black" size="10"/>
 				</textElement>
 				<text><![CDATA[   Bono]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="309" y="0" width="86" height="38" forecolor="#FFFFFF" uuid="e6ecd101-39e9-4ac3-882a-246e463e70f4"/>
+				<reportElement x="391" y="0" width="86" height="38" forecolor="#FFFFFF" uuid="e6ecd101-39e9-4ac3-882a-246e463e70f4"/>
 				<textElement>
 					<font fontName="Arial Black" size="10"/>
 				</textElement>
 				<text><![CDATA[ AFP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="398" y="0" width="86" height="38" forecolor="#FFFFFF" uuid="e3de3ab4-471d-4c3b-8024-6b1f352a3fc6"/>
+				<reportElement x="494" y="0" width="86" height="38" forecolor="#FFFFFF" uuid="e3de3ab4-471d-4c3b-8024-6b1f352a3fc6"/>
 				<textElement>
 					<font fontName="Arial Black" size="10"/>
 				</textElement>
 				<text><![CDATA[ISSS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="483" y="0" width="69" height="38" forecolor="#FFFFFF" uuid="9f65d443-0d74-4d62-ab73-5a4ee1e3c7a3"/>
+				<reportElement x="223" y="2" width="69" height="20" forecolor="#FFFFFF" uuid="45088adf-d622-4831-b32e-901dddc1d597"/>
 				<textElement>
-					<font fontName="Arial Black" size="10"/>
+					<font fontName="Arial Black"/>
 				</textElement>
-				<text><![CDATA[Renta]]></text>
+				<text><![CDATA[renta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="593" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="904062da-ed61-43bb-988d-abdfca14d207"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[sueldo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="56" splitType="Stretch">
 			<textField>
-				<reportElement x="4" y="20" width="59" height="20" uuid="ef3e53d3-956d-47d2-8b95-9130efaa37d3"/>
+				<reportElement x="4" y="18" width="59" height="20" uuid="faa50d99-7ffc-4fec-9cee-817ca76bacac"/>
 				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="97" y="20" width="82" height="20" uuid="6895a79c-f7b3-4b59-829a-e82308acfef9"/>
+				<reportElement x="86" y="18" width="121" height="20" uuid="91e2ccf2-645e-4724-be06-ac4ce89cb27e"/>
 				<textFieldExpression><![CDATA[""+$F{sueldo_gravado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="210" y="20" width="88" height="20" uuid="3e0e47ff-7124-4fd3-ad28-332465a92cbd"/>
+				<reportElement x="223" y="18" width="69" height="20" uuid="eb172799-fe5c-4bf2-ac7e-432664963af9"/>
+				<textFieldExpression><![CDATA[""+$F{renta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="18" width="68" height="20" uuid="40dd6328-51a5-48b4-90a0-74480cd3b377"/>
 				<textFieldExpression><![CDATA[""+$F{bono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="309" y="20" width="76" height="20" uuid="f5badca2-e646-4622-a985-69aa162e2863"/>
+				<reportElement x="391" y="18" width="86" height="20" uuid="665667f7-f535-4ca7-9f6d-7f4c0fb4c68d"/>
 				<textFieldExpression><![CDATA[""+$F{afp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="398" y="20" width="68" height="20" uuid="e4b8b7b4-b2fd-45d8-bc36-72abb6b3b6d5"/>
+				<reportElement x="494" y="18" width="86" height="20" uuid="f3969570-51ae-4cf1-ab3e-71a6c24797ea"/>
 				<textFieldExpression><![CDATA[""+$F{isss}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="483" y="20" width="69" height="20" uuid="0d107dd4-974f-4fef-a7ee-19175fdbeb14"/>
-				<textFieldExpression><![CDATA[""+$F{renta}]]></textFieldExpression>
+				<reportElement x="593" y="18" width="100" height="20" uuid="ac492665-1dfd-4478-8378-d1d4b20da57d"/>
+				<textFieldExpression><![CDATA[""+$F{sueldo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

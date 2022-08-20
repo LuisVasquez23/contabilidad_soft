@@ -189,7 +189,7 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
        
         try {
             //declaracion de los campos de la tabla
-            String[] nombreColum = {"#", "Empleado", "Sueldo", "Comision", "Ingresos", "AFP", 
+            String[] nombreColum = {"#", "Empleado", "Sueldo", "Comision", "Ingresos", "Sueldo gravado", "AFP", 
                                     "ISSS", "ISR", "total descuento", "Neto pagado"};
             model.setColumnIdentifiers(nombreColum);
             
@@ -203,15 +203,15 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
             while (rs.next()) {
                 id++;
                 nombre = rs.getString(1);
-                sueldo = rs.getDouble(2);
-                comision = rs.getDouble(3);
-                ingreso = rs.getDouble(4);
-                gravado = rs.getDouble(5);
-                afp = rs.getDouble(6);
-                isss = rs.getDouble(7);
-                isr = rs.getDouble(8);
-                total_Des = rs.getDouble(9);
-                neto_pag = rs.getDouble(10);
+                sueldo = rs.getDouble(3);
+                comision = rs.getDouble(4);
+                ingreso = rs.getDouble(5);
+                gravado = rs.getDouble(6);
+                afp = rs.getDouble(7);
+                isss = rs.getDouble(8);
+                isr = rs.getDouble(9);
+                total_Des = rs.getDouble(10);
+                neto_pag = rs.getDouble(11);
                 
                 model.addRow(new Object[]{id, nombre, sueldo, comision, ingreso, gravado, afp, isss, isr, total_Des, neto_pag});
             }

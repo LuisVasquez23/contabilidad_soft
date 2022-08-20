@@ -313,7 +313,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
             long diff = fecha_contratacion.getTime() - fecha_actual.getTime();
             TimeUnit unit = TimeUnit.DAYS;
             long dias = unit.convert(diff, TimeUnit.MILLISECONDS);
-            
+      
             if (dias <= 0) {
                 band_fecha = true;
             }

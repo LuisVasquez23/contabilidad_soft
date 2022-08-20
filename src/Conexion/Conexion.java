@@ -81,5 +81,15 @@ public class Conexion {
         PreparedStatement pst = conex.prepareStatement(query);
         return pst.executeQuery();
     }
+    
+    public ResultSet consulta_mes_vac(String query) throws SQLException{
+        PreparedStatement pst = conex.prepareStatement(query);
+        return pst.executeQuery();
+    }
+    
+    public ResultSet consulta_fecha_cont(String query) throws SQLException{
+        PreparedStatement pst = conex.prepareStatement(query);
+        return pst.executeQuery();
+    }
     //funciones de mario
 }
