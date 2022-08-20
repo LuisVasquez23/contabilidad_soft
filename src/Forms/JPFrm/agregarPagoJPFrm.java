@@ -324,18 +324,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     TimeUnit time = TimeUnit.DAYS; 
                     this.resta_dias = time.convert(diff, TimeUnit.MILLISECONDS);
 //                    JOptionPane.showMessageDialog(null, resta_dias);
-                    
-                    if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
-                        this.imp.sueldo_2tramo();
-                    }
-                    else if(this.imp.getSueldo_con_descuentos() >= 895.25 && this.imp.getSueldo_con_descuentos() <= 2038.10){
-                        this.imp.sueldo_3tramo();
-                    }
-                    else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
-                        this.imp.sueldo_4tramo();
-                    }
                     int resta = this.fecha_contratacion.getYear()-this.fecha_actual.getYear();
-                    
                     JOptionPane.showMessageDialog(null, ""+resta);
                     if(resta == 0){
                         this.imp.calculo_aguinaldo_porporcional((int)this.resta_dias);
@@ -352,6 +341,29 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Naira");
+                    }
+                    
+                    //Descuentos again por si cambia el el sueldo
+                    if(this.imp.getResu_aguinaldo() >= 1100)
+                    {
+                        Double exceso_aguinaldo = this.imp.getResu_aguinaldo() - 1100;
+                         this.imp = new Impuesto(salario_final + exceso_aguinaldo);
+                        this.imp.setNit(this.carnet_input.getText());
+                        this.imp.calculo_afp();
+                        this.imp.calculo_isss();
+                        this.imp.calculo_vacacion();
+                        this.imp.sueldo_sin_renta();
+                        this.imp.setMes(this.string_meses(i));
+                    }
+                   
+                    if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
+                        this.imp.sueldo_2tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 895.25 && this.imp.getSueldo_con_descuentos() <= 2038.10){
+                        this.imp.sueldo_3tramo();
+                    }
+                    else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
+                        this.imp.sueldo_4tramo();
                     }
                     
                     Double nuevo_sueldo = this.imp.getSueldo_con_descuentos()+this.imp.getResu_aguinaldo();
