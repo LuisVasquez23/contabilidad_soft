@@ -16,11 +16,18 @@ public class scripts {
     }
     
     public String cosulta_impuesto(){
-        String query = "select im.mes, im.sueldo_gravado, im.renta, im.afp, im.isss, em.sueldo from empleado em " +
+        String query = "select im.mes, im.sueldo_gravado, im.renta, im.afp, im.isss, (im.sueldo_gravado+im.afp+im.isss) as sueldo from empleado em " +
                         "join impuesto im on em.NIT = im.NIT " +
                         "where em.NIT = ?;";
         return query;
     }
+    
+////    public String cosulta_impuesto(){
+////        String query = "select im.mes, im.sueldo_gravado, im.renta, im.afp, im.isss, (im.sueldo_gravado+im.afp+im.isss) as sueldo from empleado em" +
+////                       "join impuesto im on em.NIT = im.NIT" +
+////                       "where em.NIT = ?;";
+////        return query;
+////    }
     
     public String consult_constan_renta(){
         String query = "select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)) as ingreso, " +
