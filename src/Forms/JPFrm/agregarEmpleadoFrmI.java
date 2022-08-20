@@ -34,11 +34,13 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         conn = new Conexion();
         sc = new scripts();
         fecha_actual = new Date();
+        formato = new SimpleDateFormat("dd-MM-yyyy"); 
     }
     
     //procedimiento para limpiar los campos.
-    public void limpiar(){
-        
+    public void limpiar(){ 
+        String fechStr_actual = formato.format(fecha_actual);
+        this.fechaContrato_input.setText(fechStr_actual);
         this.primerNombre_input.setText("");
         this.primerApellido_input.setText("");
         this.segundoApellido_input.setText("");
@@ -171,6 +173,11 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         btn_limpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
         btn_limpiarDatos.setText("Limpiar datos");
         btn_limpiarDatos.setBorder(null);
+        btn_limpiarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarDatosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,12 +266,19 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
 
     private void btn_agregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarEmpleadoActionPerformed
         String nombre, cargo, periodo = "", concat, nit = "", mes_vac = null, fecha = "";
-        double sueldo = 0, resta_anio = 0, resta_mes = 0, resta_dia = 0;
-        Date fecha_contratacion;
-        formato = new SimpleDateFormat("dd-MM-yyyy");     
+        double sueldo = 0;
+        Date fecha_contratacion;   
         boolean band_fecha =  false;
         
         
+        String fechStr_actual;
+        fechStr_actual = formato.format(fecha_actual);
+        
+        try {
+            fecha_actual = formato.parse(fechStr_actual);
+        } catch (ParseException ex) {
+            Logger.getLogger(agregarEmpleadoFrmI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //concatenacion del nomnbre
         concat = this.primerNombre_input.getText().toUpperCase()+" "+this.segundoNombre_input.getText().toUpperCase()+" "
                 +this.primerApellido_input.getText().toUpperCase()+" "+this.segundoApellido_input.getText().toUpperCase();
@@ -289,31 +303,22 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         }
         
         //Para la asigniacion de la fecha de contratacion
-        try {
-            
+        try {         
             fecha = this.fechaContrato_input.getText();
+            //cambiar la fecha de string a date
             fecha_contratacion = (Date) formato.parse(this.fechaContrato_input.getText());
-            resta_anio = fecha_contratacion.getYear() - fecha_actual.getYear();
-            resta_mes = fecha_contratacion.getMonth() - fecha_actual.getMonth();
-            resta_dia = fecha_contratacion.getDate() - fecha_actual.getDate() ;
             
-            if (resta_anio == 0) {
-                if (resta_mes <= 0) {
-                    if (resta_dia <= 0) {
-                        band_fecha = true;
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Incongruencia en el día");
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Incongruencia en el mes");
-                }
-            }else if(resta_anio < 0){
+            //resta de fechas
+            
+            long diff = fecha_contratacion.getTime() - fecha_actual.getTime();
+            TimeUnit unit = TimeUnit.DAYS;
+            long dias = unit.convert(diff, TimeUnit.MILLISECONDS);
+            
+            if (dias <= 0) {
                 band_fecha = true;
             }
             else{
-                JOptionPane.showMessageDialog(null, "Incongruencia en el año");
+                JOptionPane.showMessageDialog(null, "Incongruencia en la fecha");
             }
             
         } catch (Exception ex) {
@@ -324,20 +329,13 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         //Asignacion del mes de vacacion
         try {
             //condicional para saber si puede tener vacaciones.
-            if (resta_anio <= -1) {
-                if (resta_mes >= 0) {
-                    if (resta_dia >= 0) {
-                        mes_vac = this.vacaiones_input.getSelectedItem().toString();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
-                }
-            }
-            else if(resta_anio < -1){
+            //convertir la fecha del textfield a date 
+            fecha_contratacion = (Date) formato.parse(this.fechaContrato_input.getText());
+            long diff = fecha_contratacion.getTime() - fecha_actual.getTime();
+            TimeUnit unit = TimeUnit.DAYS;
+            long dias = unit.convert(diff, TimeUnit.MILLISECONDS);
+            
+            if (dias <= -365) {
                 mes_vac = this.vacaiones_input.getSelectedItem().toString();
             }
             else{
@@ -366,6 +364,10 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
     private void NIT_inputMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NIT_inputMouseClicked
         
     }//GEN-LAST:event_NIT_inputMouseClicked
+
+    private void btn_limpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarDatosActionPerformed
+        this.limpiar();
+    }//GEN-LAST:event_btn_limpiarDatosActionPerformed
 
     public void Cargar_datos(String pnit, String pnombre, String pcargo, String pPeriodo, String pfecha, String mes_vac,double psueldo){
         conn.Conexion();
