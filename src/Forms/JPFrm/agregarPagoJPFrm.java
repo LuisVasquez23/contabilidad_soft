@@ -231,7 +231,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
             this.imp.setNit(this.carnet_input.getText());
             this.imp.calculo_afp();
             this.imp.calculo_isss();
-            this.imp.calculo_vacacion();
+            this.imp.calculo_vacacion();            
             this.imp.sueldo_sin_renta();
             
             rs = conn.consulta_mes_vac(sc.mostrar_mes_vac(this.carnet_input.getText()));
@@ -279,17 +279,21 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
             this.fecha_showInput.setText(this.imp.getMes());
             this.ISS_showInput.setText(""+this.imp.getResul_isss());
             this.AFP_showInput.setText(""+this.imp.getResul_afp());
-            
+  
+            //ingreso de datos
             for (int i = 1; i < 13; i++) {
+    
                 if(this.string_meses(i).toUpperCase().equals(mes_vac)){
+                    this.imp.calculo_vacacion();
+                    double vacacion = this.imp.getResu_vacacion();
                     
                     this.imp = new Impuesto(salario_final+this.imp.getResu_vacacion());
                     this.imp.setNit(this.carnet_input.getText());
                     this.imp.calculo_afp();
                     this.imp.calculo_isss();
-                    this.imp.calculo_vacacion();
                     this.imp.sueldo_sin_renta();
                     this.imp.setMes(this.string_meses(i));
+                    this.imp.setResu_vacacion(vacacion);
                     
                     if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
                         this.imp.sueldo_2tramo();
@@ -308,7 +312,6 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     this.imp.setNit(this.carnet_input.getText());
                     this.imp.calculo_afp();
                     this.imp.calculo_isss();
-                    this.imp.calculo_vacacion();
                     this.imp.sueldo_sin_renta();
                     this.imp.setMes(this.string_meses(i));
                     
@@ -325,16 +328,17 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     this.resta_dias = time.convert(diff, TimeUnit.MILLISECONDS);
 //                    JOptionPane.showMessageDialog(null, resta_dias);
                     int resta = this.fecha_contratacion.getYear()-this.fecha_actual.getYear();
-                    JOptionPane.showMessageDialog(null, ""+resta);
+          
                     if(resta == 0){
                         this.imp.calculo_aguinaldo_porporcional((int)this.resta_dias);
+
                     }
                     else if(resta <= -1 && resta > -3){
                         this.imp.calculo_aguinaldo(15);
+                        
                     }
                     else if(resta <= -3 && resta > -10){
                         this.imp.calculo_aguinaldo(19);
-                        JOptionPane.showMessageDialog(null, "3 aguinaldo "+imp.getResu_aguinaldo());
                     }
                     else if(resta <= -10){
                         this.imp.calculo_aguinaldo(21);
@@ -346,14 +350,16 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     //Descuentos again por si cambia el el sueldo
                     if(this.imp.getResu_aguinaldo() >= 1100)
                     {
-                        Double exceso_aguinaldo = this.imp.getResu_aguinaldo() - 1100;
-                         this.imp = new Impuesto(salario_final + exceso_aguinaldo);
+                        Double exceso_aguinaldo = this.imp.getResu_aguinaldo() - 1100;        
+                        double aguinaldo = this.imp.getResu_aguinaldo();
+                        
+                        this.imp = new Impuesto(salario_final + exceso_aguinaldo);
                         this.imp.setNit(this.carnet_input.getText());
                         this.imp.calculo_afp();
                         this.imp.calculo_isss();
-                        this.imp.calculo_vacacion();
                         this.imp.sueldo_sin_renta();
                         this.imp.setMes(this.string_meses(i));
+                        this.imp.setResu_aguinaldo(aguinaldo);
                     }
                    
                     if(this.imp.getSueldo_con_descuentos() >= 472.01 && this.imp.getSueldo_con_descuentos() <= 895.24){
@@ -365,10 +371,14 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     else if(this.imp.getSueldo_con_descuentos() >= 2038.11){
                         this.imp.sueldo_4tramo();
                     }
+                    //NOTA: Se lo quite por que el nuevo sueldo es la suma de del residuo de aguinaldo - 1100
+                    //Eso se lo mandas de una al cargar
                     
-                    Double nuevo_sueldo = this.imp.getSueldo_con_descuentos()+this.imp.getResu_aguinaldo();
-                    
-                    this.imp.setSueldo_con_descuentos(Double.parseDouble(format.format(nuevo_sueldo)));
+//                    JOptionPane.showMessageDialog(null, "Sueldo $"+this.imp.getSueldo()+" Aguinaldo $"+ this.imp.getResu_aguinaldo());
+//                    Double nuevo_sueldo = this.imp.getSueldo_con_descuentos() + this.imp.getResu_aguinaldo();
+//                    JOptionPane.showMessageDialog(null, ""+nuevo_sueldo);
+//                    
+//                    this.imp.setSueldo_con_descuentos(Double.parseDouble(format.format(nuevo_sueldo)));
 //                    JOptionPane.showMessageDialog(null, this.imp.getResu_aguinaldo());
 //                    JOptionPane.showMessageDialog(null, this.imp.getSueldo_con_descuentos());
                     this.conn.agregar_impuesto(this.sc.ingresar_impuesto(), imp);
@@ -378,7 +388,6 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     this.imp.setNit(this.carnet_input.getText());
                     this.imp.calculo_afp();
                     this.imp.calculo_isss();
-                    this.imp.calculo_vacacion();
                     this.imp.sueldo_sin_renta();
                     this.imp.setMes(this.string_meses(i));
                     

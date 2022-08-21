@@ -1,1 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Alejandro/Desktop/3 año/6 ciclo/MAte/contabilidad_soft/src/DB/Empleados.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1964"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="0" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainImpuesto"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1"></sql><current_tab id="0"/></tab_sql></sqlb_project>
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Alejandro/Desktop/3 año/6 ciclo/MAte/contabilidad_soft/src/DB/Empleados.db" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="2146"/><column_width id="4" width="0"/></tab_structure><tab_browse><current_table name="0,0:"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">select * from impuesto;
+
+delete from impuesto 
+where NIT = '1111-111111-111-1';
+
+
+select im.mes, im.sueldo_gravado, im.renta, im.bono, im.afp, im.isss, (em.sueldo + im.aguinaldo + im.vacaciones) from empleado em
+join impuesto im on em.NIT = im.NIT
+WHERE em.NIT = '1111-111111-111-1';
+
+select * from empleado;
+
+delete from impuesto
+
+select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)+sum(im.vacaciones)+sum(im.aguinaldo)) as ingreso, 
+sum(im.sueldo_gravado)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, sum(im.renta) as isr, 
+round((sum(im.afp) + sum(im.isss) + sum(im.renta)),3) as descuento, round(((sum(em.sueldo) + sum(im.bono)+ sum(im.vacaciones)+sum(im.aguinaldo)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))), 3) as pagado
+from empleado em
+join impuesto im on em.NIT = im.NIT
+where im.NIT = '1111-111111-111-1';
+
+
+select em.NIT, em.nombre, em.fecha_contrato, em.cargo, em.sueldo, im.bono, (em.sueldo + im.bono)as ingreso, (em.sueldo*0.0775) as AFP, (em.sueldo * 0.075) as isss, (1000*.1)as insaford,
+((em.sueldo*0.0775)+(em.sueldo * 0.075) + (1000*.1))as total  from empleado em
+join impuesto im on em.NIT = im.NIT
+where em.NIT = '1111-111111-111-1'
+LIMIT 1;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

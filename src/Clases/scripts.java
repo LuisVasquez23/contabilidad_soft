@@ -16,9 +16,9 @@ public class scripts {
     }
     
     public String cosulta_impuesto(){
-        String query = "select im.mes, im.sueldo_gravado, im.renta, im.afp, im.isss, (im.sueldo_gravado+im.afp+im.isss) as sueldo from empleado em " +
+        String query = "select im.mes, im.sueldo_gravado, round(im.renta, 3), round(im.afp, 3), im.isss, (em.sueldo + im.aguinaldo + im.vacaciones) from empleado em " +
                         "join impuesto im on em.NIT = im.NIT " +
-                        "where em.NIT = ?;";
+                        "WHERE em.NIT = ?;";
         return query;
     }
     
@@ -30,9 +30,9 @@ public class scripts {
 ////    }
     
     public String consult_constan_renta(){
-        String query = "select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)) as ingreso, " +
-                        "round(sum(im.sueldo_gravado), 3)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, sum(im.renta) as isr, " +
-                        "round((sum(im.afp) + sum(im.isss) + sum(im.renta)),3) as descuento, round(((sum(em.sueldo) + sum(im.bono)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))), 3) as pagado " +
+        String query = "select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)+sum(im.vacaciones)+sum(im.aguinaldo)) as ingreso, " +
+                        "sum(im.sueldo_gravado)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, round(sum(im.renta),3) as isr, " +
+                        "round((sum(im.afp) + sum(im.isss) + sum(im.renta)),3) as descuento, round(((sum(em.sueldo) + sum(im.bono)+ sum(im.vacaciones)+sum(im.aguinaldo)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))), 3) as pagado " +
                         "from empleado em " +
                         "join impuesto im on em.NIT = im.NIT " +
                         "where im.NIT = ?;";
@@ -47,8 +47,8 @@ public class scripts {
     
     //funciones de mario
     public String ingresar_impuesto(){
-        String query = "insert into Impuesto(NIT, mes, sueldo_gravado, bono, horas_extras, isss, afp, renta, aguinaldo)" +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String query = "insert into Impuesto(NIT, mes, sueldo_gravado, bono, horas_extras, isss, afp, renta, aguinaldo, vacaciones)" +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         return query;
     }
     

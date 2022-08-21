@@ -111,7 +111,7 @@ public class Impuesto extends Empleado{
     //evaluacion del tramo 4
     public void sueldo_4tramo(){
         //constantes
-        double cons_cuoFija = 288.57, cons_porcen = .3, cons_sobre_exc = 2034.10;
+        double cons_cuoFija = 288.57, cons_porcen = .3, cons_sobre_exc = 2038.10;
         //variables 
         double resta_sobreex, multi_porcentaje,total;
         

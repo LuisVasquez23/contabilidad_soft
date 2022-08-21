@@ -10,17 +10,17 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select em.nombre, em.NIT, im.mes, im.sueldo_gravado, im.bono,im.renta, im.afp, im.isss, em.sueldo from empleado em
+		<![CDATA[select em.nombre, em.NIT, im.mes, im.sueldo_gravado,round(im.renta, 3)as ISR, im.bono, round(im.afp, 3)as AFP, im.isss, (em.sueldo + im.aguinaldo + im.vacaciones + im.bono)as sueldo from empleado em
 join impuesto im on em.NIT = im.NIT
-where em.NIT =  $P{pnit} and im.mes = $P{pmes};]]>
+WHERE em.NIT = $P{pnit} and im.mes = $P{pmes};]]>
 	</queryString>
 	<field name="nombre" class="java.lang.Object"/>
 	<field name="NIT" class="java.lang.Object"/>
 	<field name="mes" class="java.lang.Object"/>
 	<field name="sueldo_gravado" class="java.lang.Object"/>
+	<field name="ISR" class="java.lang.Object"/>
 	<field name="bono" class="java.lang.Object"/>
-	<field name="renta" class="java.lang.Object"/>
-	<field name="afp" class="java.lang.Object"/>
+	<field name="AFP" class="java.lang.Object"/>
 	<field name="isss" class="java.lang.Object"/>
 	<field name="sueldo" class="java.lang.Object"/>
 	<background>
@@ -67,25 +67,25 @@ where em.NIT =  $P{pnit} and im.mes = $P{pmes};]]>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="230" y="102" width="410" height="24" forecolor="#FFFFFF" uuid="c9151fbc-6a70-46a1-8a91-8dc62aee4b75"/>
+				<reportElement x="104" y="63" width="191" height="24" forecolor="#FFFFFF" uuid="c35cdb69-14ae-4ec3-89e7-b84563bace3f"/>
 				<textElement>
-					<font fontName="Courier New" size="14"/>
+					<font fontName="Courier New" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="228" y="102" width="436" height="24" forecolor="#FFFFFF" uuid="f9d83dec-7d23-4b87-b389-e4164d05bf27"/>
+				<textElement>
+					<font fontName="Courier New" size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="86" y="137" width="316" height="24" forecolor="#FFFFFF" uuid="52788e50-94e3-4e17-8014-e85d60c82ff4"/>
+				<reportElement x="86" y="137" width="367" height="24" forecolor="#FFFFFF" uuid="e912eb82-0600-483d-9414-60459ec2f32a"/>
 				<textElement>
-					<font fontName="Courier New" size="14"/>
+					<font fontName="Courier New" size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[""+$F{NIT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="86" y="63" width="144" height="24" forecolor="#FFFFFF" uuid="0b5054fd-2d4f-4fc9-9145-6c3920fcd738"/>
-				<textElement>
-					<font fontName="Courier New" size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -133,49 +133,49 @@ where em.NIT =  $P{pnit} and im.mes = $P{pmes};]]>
 				<text><![CDATA[ISSS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="223" y="2" width="69" height="20" forecolor="#FFFFFF" uuid="45088adf-d622-4831-b32e-901dddc1d597"/>
-				<textElement>
-					<font fontName="Arial Black"/>
-				</textElement>
-				<text><![CDATA[renta]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="593" y="2" width="100" height="20" forecolor="#FFFFFF" uuid="904062da-ed61-43bb-988d-abdfca14d207"/>
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
 				<text><![CDATA[sueldo]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="207" y="2" width="88" height="36" forecolor="#FFFFFF" uuid="9a0e2b5b-c9b9-46b5-ba9c-5539cd9a29b3"/>
+				<textElement>
+					<font fontName="Arial Black" size="11"/>
+				</textElement>
+				<text><![CDATA[ISR]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="56" splitType="Stretch">
 			<textField>
-				<reportElement x="4" y="18" width="59" height="20" uuid="faa50d99-7ffc-4fec-9cee-817ca76bacac"/>
+				<reportElement x="0" y="20" width="63" height="20" uuid="f29086d7-2413-4eae-8ef6-602bad21dc9c"/>
 				<textFieldExpression><![CDATA[""+$F{mes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="86" y="18" width="121" height="20" uuid="91e2ccf2-645e-4724-be06-ac4ce89cb27e"/>
+				<reportElement x="86" y="20" width="86" height="20" uuid="56943b6f-9351-4980-a4b0-135101d7f9d6"/>
 				<textFieldExpression><![CDATA[""+$F{sueldo_gravado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="223" y="18" width="69" height="20" uuid="eb172799-fe5c-4bf2-ac7e-432664963af9"/>
-				<textFieldExpression><![CDATA[""+$F{renta}]]></textFieldExpression>
+				<reportElement x="210" y="20" width="85" height="20" uuid="2f64e313-8289-40d4-aaf5-9353672989bc"/>
+				<textFieldExpression><![CDATA[""+$F{ISR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="309" y="18" width="68" height="20" uuid="40dd6328-51a5-48b4-90a0-74480cd3b377"/>
+				<reportElement x="323" y="20" width="54" height="20" uuid="06207f3b-bff9-4615-ae15-885551dda712"/>
 				<textFieldExpression><![CDATA[""+$F{bono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="391" y="18" width="86" height="20" uuid="665667f7-f535-4ca7-9f6d-7f4c0fb4c68d"/>
-				<textFieldExpression><![CDATA[""+$F{afp}]]></textFieldExpression>
+				<reportElement x="394" y="20" width="83" height="20" uuid="f07b90c3-8f3c-45b5-9387-3b24040a91c1"/>
+				<textFieldExpression><![CDATA[""+$F{AFP}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="494" y="18" width="86" height="20" uuid="f3969570-51ae-4cf1-ab3e-71a6c24797ea"/>
+				<reportElement x="494" y="20" width="86" height="20" uuid="3351d3ce-90b2-4c39-a2a7-2ef328f6eea1"/>
 				<textFieldExpression><![CDATA[""+$F{isss}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="593" y="18" width="100" height="20" uuid="ac492665-1dfd-4478-8378-d1d4b20da57d"/>
+				<reportElement x="593" y="20" width="100" height="20" uuid="8aed2659-9aca-4236-b2cc-a2a87078cf46"/>
 				<textFieldExpression><![CDATA[""+$F{sueldo}]]></textFieldExpression>
 			</textField>
 		</band>

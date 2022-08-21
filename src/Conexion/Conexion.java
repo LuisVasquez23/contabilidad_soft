@@ -74,6 +74,7 @@ public class Conexion {
             pst.setDouble(7, impuesto.getResul_afp());
             pst.setDouble(8, impuesto.getResul_genrl());
             pst.setDouble(9, impuesto.getResu_aguinaldo());
+            pst.setDouble(10, impuesto.getResu_vacacion());
             //ejecutar el el comando de ingreso de datos
             pst.execute();             
     }

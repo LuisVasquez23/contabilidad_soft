@@ -7,9 +7,9 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)) as ingreso, 
-sum(im.sueldo_gravado)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, sum(im.renta) as isr, 
-round((sum(im.afp) + sum(im.isss) + sum(im.renta)),3) as descuento, round(((sum(em.sueldo) + sum(im.bono)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))), 3) as pagado
+		<![CDATA[select em.nombre, em.NIT,  sum(em.sueldo)as sueldo, sum(im.bono)as comision, (sum(em.sueldo) + sum(im.bono)+sum(im.vacaciones)+sum(im.aguinaldo)) as ingreso, 
+sum(im.sueldo_gravado)as gravado, sum(im.afp)as afp, sum(im.isss)as isss, round(sum(im.renta), 2) as isr, 
+round((sum(im.afp) + sum(im.isss) + sum(im.renta)),3) as descuento, round(((sum(em.sueldo) + sum(im.bono)+ sum(im.vacaciones)+sum(im.aguinaldo)) - (sum(im.afp) + sum(im.isss) + sum(im.renta))), 3) as pagado
 from empleado em
 join impuesto im on em.NIT = im.NIT
 where im.NIT = $P{pnit};]]>
