@@ -47,8 +47,8 @@ public class scripts {
     
     //funciones de mario
     public String ingresar_impuesto(){
-        String query = "insert into Impuesto(NIT, mes, sueldo_gravado, bono, horas_extras, isss, afp, renta)" +
-                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+        String query = "insert into Impuesto(NIT, mes, sueldo_gravado, bono, horas_extras, isss, afp, renta, aguinaldo)" +
+                        "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
         return query;
     }
     
