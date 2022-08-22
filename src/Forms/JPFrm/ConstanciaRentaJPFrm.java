@@ -182,6 +182,7 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.btn_buscarEmpleado.setEnabled(true);
         this.btn_generarPDF.setEnabled(false);
+        this.limpiar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void cargar_tabla(String pnit){
@@ -254,7 +255,10 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
         }
         
     }
-    
+    public void limpiar(){
+        this.model.setRowCount(0);
+        this.nit_input.setText("");
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

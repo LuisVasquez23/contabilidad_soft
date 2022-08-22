@@ -339,7 +339,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
                 mes_vac = this.vacaiones_input.getSelectedItem().toString();
             }
             else{
-                JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
+//                JOptionPane.showMessageDialog(null, "Sigue soñando con las vacaciones");
             }
             
         } catch (Exception e) {
@@ -383,7 +383,7 @@ public class agregarEmpleadoFrmI extends javax.swing.JPanel {
         
         try {
             conn.agregar(sc.ingresar_empleado(), empleado);
-            JOptionPane.showMessageDialog(null, "se ha agregado el empleado");
+            JOptionPane.showMessageDialog(null, "Se ha agregado el empleado");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al ingresar en la base de datos");
         }

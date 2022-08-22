@@ -53,7 +53,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         this.bono_input.setText("");
         this.carnet_input.setText("");
         this.salario_input.setText("");
-        this.horasExtras_input.setText("");
+//        this.horasExtras_input.setText("");
         this.fecha_showInput.setText("");
         this.ISS_showInput.setText("");
         this.AFP_showInput.setText("");
@@ -80,7 +80,6 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         renta_showInput = new Helpers.TextField();
         btn_limpiarDatos = new javax.swing.JButton();
         bono_input = new Helpers.TextField();
-        horasExtras_input = new Helpers.TextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -156,11 +155,6 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
         bono_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         bono_input.setLabelText("Bono");
 
-        horasExtras_input.setForeground(new java.awt.Color(102, 102, 102));
-        horasExtras_input.setText("$ ");
-        horasExtras_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        horasExtras_input.setLabelText("Horas extras");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,9 +180,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                                     .addComponent(btn_limpiarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(horasExtras_input, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(salario_input, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(salario_input, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,9 +192,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                     .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salario_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(horasExtras_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bono_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(bono_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -226,7 +216,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
             conn.Conexion();
             ResultSet rs = null, rss = null;
             
-            double salario_final = Double.parseDouble(this.salario_input.getText())+Double.parseDouble(this.bono_input.getText())+Double.parseDouble(this.horasExtras_input.getText());
+            double salario_final = Double.parseDouble(this.salario_input.getText())+Double.parseDouble(this.bono_input.getText());
             this.imp = new Impuesto(salario_final);
             this.imp.setNit(this.carnet_input.getText());
             this.imp.calculo_afp();
@@ -344,7 +334,7 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                         this.imp.calculo_aguinaldo(21);
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "Naira");
+//                        JOptionPane.showMessageDialog(null, "Naira");
                     }
                     
                     //Descuentos again por si cambia el el sueldo
@@ -401,8 +391,10 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
                         this.imp.sueldo_4tramo();
                     }
                 this.conn.agregar_impuesto(this.sc.ingresar_impuesto(), imp);
+                    
                 }
             }
+            JOptionPane.showMessageDialog(null, "Pago realizado", "Información", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         } catch (ParseException ex) {
@@ -480,7 +472,6 @@ public class agregarPagoJPFrm extends javax.swing.JPanel {
     private javax.swing.JButton btn_limpiarDatos;
     private Helpers.TextField carnet_input;
     private Helpers.TextField fecha_showInput;
-    private Helpers.TextField horasExtras_input;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
