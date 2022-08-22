@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportConstacia_Laboral" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="150a1e43-f34a-49a9-842c-64af9e10873d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="77"/>
+	<parameter name="pnit" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select em.nombre, em.NIT, round((sum(em.sueldo)+sum(im.aguinaldo)+sum(im.vacaciones)), 3)as ingreso, round(sum(im.sueldo_gravado), 3)as gravado,
+round(sum(renta), 3)as ISR, round(sum(im.afp), 3)as AFP, sum(im.isss)as ISSS, round(sum(im.aguinaldo), 3)as aguinaldo from empleado em
+join Impuesto im on em.NIT = im.NIT
+where em.NIT = $P{pnit};]]>
+	</queryString>
+	<field name="nombre" class="java.lang.Object"/>
+	<field name="NIT" class="java.lang.Object"/>
+	<field name="ingreso" class="java.lang.Object"/>
+	<field name="gravado" class="java.lang.Object"/>
+	<field name="ISR" class="java.lang.Object"/>
+	<field name="AFP" class="java.lang.Object"/>
+	<field name="ISSS" class="java.lang.Object"/>
+	<field name="aguinaldo" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="600" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="113" backcolor="#FFCC99" uuid="faf765cf-529b-4a0d-8d15-bbc62d24063c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="216" y="15" width="160" height="30" uuid="4b41ec17-8083-491f-8141-0472ef4add50"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[Constancia laboral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="58" width="205" height="30" uuid="84c9fbc1-2dc4-4a4c-a817-c47ca91520b7"/>
+				<textElement>
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[Binario Software Factory]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="128" width="303" height="22" uuid="2f027b2f-0bdd-4d67-b97c-89c5b5658abe"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[El infrascrito agente de rentención hace constar que ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="130" width="252" height="20" uuid="d3842211-f6ac-4c49-91d2-bbcc911800e5"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="160" width="51" height="22" uuid="96b6bbe5-b309-405a-a239-93e378f7ae63"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[con NIT ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="62" y="162" width="164" height="20" uuid="8dd2e1f6-9615-4a3d-a225-3748775c29be"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{NIT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="237" y="162" width="335" height="22" uuid="ff6809be-b0c9-4243-9d44-b06e6799da39"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[en su calidad de empleado de esta empresa, devengó]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="195" width="494" height="22" uuid="f675c148-d8fd-4e38-9564-dfac2f12363f"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[durante el período comprendido entre el 01/01/2022 al 31/12/2021, lo siguiente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="231" width="62" height="22" uuid="cfbf6851-b0e1-41aa-9109-c92019089c90"/>
+				<textElement>
+					<font fontName="Arial Black" size="13"/>
+				</textElement>
+				<text><![CDATA[Detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="271" width="193" height="22" uuid="df05523d-9e76-4a5b-96b5-04ba76cac555"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Ingreso devengado		$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="271" width="141" height="22" uuid="f546a642-4d26-43d1-865c-4004816f0509"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{ingreso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="308" width="193" height="22" uuid="12cff126-7f02-4b11-8abc-547b11dedb96"/>
+				<textElement>
+					<font fontName="Arial Black" size="13"/>
+				</textElement>
+				<text><![CDATA[(-) Ingresos no gravados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="344" width="193" height="22" uuid="e93c423f-d962-4267-ab61-7ff368797053"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Cotización AFP		$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="344" width="141" height="22" uuid="6b67c45b-2f1c-4376-9397-c3a555d5831e"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{AFP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="379" width="193" height="22" uuid="d1648800-b91c-4c46-9bc4-8128c384b420"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Cotización ISSS		$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="276" y="379" width="139" height="22" uuid="bcb38de2-8a52-49d8-b2d2-366e09ef84db"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{ISSS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="418" width="193" height="22" uuid="675a15e5-00fe-4d0b-a058-3f6318d53b27"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Aguinaldo no gravado	$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="418" width="141" height="22" uuid="ca63b27d-ed53-46a2-abbc-ae0920afeb2d"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{aguinaldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="460" width="193" height="22" uuid="9ae89d7a-3563-4e40-b815-382ef6d6be0c"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Monto gravado		$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="460" width="141" height="22" uuid="cc28432d-9369-4df1-9c29-6ba1be84dbc6"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{gravado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="521" width="193" height="22" uuid="f2951df0-5b7a-491e-ada7-26ff58219a24"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Impuesto sobre la renta	$]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="276" y="521" width="139" height="22" uuid="39332101-f20f-44ba-864d-32067cb34eb7"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{ISR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="561" width="320" height="22" uuid="439e0b99-f88f-4eb1-bb33-bd5a3e66611c"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[Se extiende la presente en la ciudad de Santa Ana el ]]></text>
+			</staticText>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="350" y="561" width="178" height="22" uuid="c859d79c-c069-4fd5-bbd5-2f6d71e95c7a"/>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="2" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="4" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

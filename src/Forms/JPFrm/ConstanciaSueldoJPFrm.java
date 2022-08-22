@@ -5,17 +5,25 @@
  */
 package Forms.JPFrm;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import Conexion.Conexion;
 /**
  *
  * @author luis
  */
 public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ConstanciaSueldoJPFrm
-     */
+    Conexion conn;
     public ConstanciaSueldoJPFrm() {
         initComponents();
+        conn = new Conexion();
     }
 
     /**
@@ -29,7 +37,6 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
 
         label_title = new javax.swing.JLabel();
         carnet_input = new Helpers.TextField();
-        btn_buscarEmpleado = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_generarPDF = new javax.swing.JButton();
@@ -42,12 +49,7 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
 
         carnet_input.setForeground(new java.awt.Color(102, 102, 102));
         carnet_input.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        carnet_input.setLabelText("Carnet");
-
-        btn_buscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_buscarEmpleado.png"))); // NOI18N
-        btn_buscarEmpleado.setBorderPainted(false);
-        btn_buscarEmpleado.setContentAreaFilled(false);
-        btn_buscarEmpleado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Icons/btn_buscarEmpleadohover.png"))); // NOI18N
+        carnet_input.setLabelText("NIT");
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel3.setText("Informacion del empleado");
@@ -59,12 +61,22 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
         btn_generarPDF.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         btn_generarPDF.setForeground(new java.awt.Color(255, 255, 255));
         btn_generarPDF.setText("Generar PDF");
+        btn_generarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_generarPDFActionPerformed(evt);
+            }
+        });
 
         btn_LimpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
         btn_LimpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         btn_LimpiarDatos.setForeground(new java.awt.Color(255, 255, 255));
         btn_LimpiarDatos.setText("Limpiar datos");
         btn_LimpiarDatos.setBorder(null);
+        btn_LimpiarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_LimpiarDatosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -72,19 +84,15 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(label_title)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_LimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(48, 48, 48)
-                            .addComponent(btn_buscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(134, 134, 134)
+                        .addComponent(btn_LimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carnet_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -93,9 +101,7 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(label_title)
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_buscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -108,10 +114,43 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
+        String nit = this.carnet_input.getText();
+        if (nit.length() == 17) {
+            this.genenrar_pdf(nit);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error! en el nit");
+        }
+    }//GEN-LAST:event_btn_generarPDFActionPerformed
+
+    private void btn_LimpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LimpiarDatosActionPerformed
+        this.carnet_input.setText("");
+    }//GEN-LAST:event_btn_LimpiarDatosActionPerformed
+
+     public void genenrar_pdf(String pnit){
+        conn.Conexion();        
+        JasperReport reporte;
+        String path = "src\\Reportes\\reportConstacia_Laboral.jasper";
+        
+        try {
+            Map parametro = new HashMap();
+            parametro.put("pnit", pnit);
+            
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            
+            JasperPrint printreport = JasperFillManager.fillReport(reporte, parametro, conn.conex);
+            JasperViewer view = new JasperViewer(printreport, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_LimpiarDatos;
-    private javax.swing.JButton btn_buscarEmpleado;
     private javax.swing.JButton btn_generarPDF;
     private Helpers.TextField carnet_input;
     private javax.swing.JLabel jLabel3;

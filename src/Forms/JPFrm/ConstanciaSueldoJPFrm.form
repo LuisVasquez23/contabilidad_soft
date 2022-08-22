@@ -23,22 +23,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="label_title" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btn_generarPDF" min="-2" pref="330" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_LimpiarDatos" min="-2" pref="314" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="carnet_input" min="-2" pref="420" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="btn_buscarEmpleado" min="-2" pref="310" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btn_generarPDF" min="-2" pref="330" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                      <Component id="btn_LimpiarDatos" min="-2" pref="314" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="carnet_input" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
@@ -50,10 +44,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="label_title" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btn_buscarEmpleado" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="carnet_input" alignment="1" min="-2" pref="66" max="-2" attributes="0"/>
-              </Group>
+              <Component id="carnet_input" min="-2" pref="66" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -85,19 +76,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="18" style="0"/>
         </Property>
-        <Property name="labelText" type="java.lang.String" value="Carnet"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btn_buscarEmpleado">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Assets/Icons/btn_buscarEmpleado.png"/>
-        </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-        <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Assets/Icons/btn_buscarEmpleadohover.png"/>
-        </Property>
+        <Property name="labelText" type="java.lang.String" value="NIT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -129,6 +108,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Generar PDF"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_generarPDFActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_LimpiarDatos">
       <Properties>
@@ -146,6 +128,9 @@
           <Border info="null"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_LimpiarDatosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
