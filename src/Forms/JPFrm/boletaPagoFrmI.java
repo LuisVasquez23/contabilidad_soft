@@ -74,7 +74,6 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
         nit_input = new Helpers.TextField();
         btn_buscarEmpleado = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btn_limpiarDatos = new javax.swing.JButton();
         btn_generarPDF = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -112,9 +111,6 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel3.setText("Informacion del empleado");
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setText("Nombre:");
 
         btn_limpiarDatos.setBackground(new java.awt.Color(255, 102, 102));
         btn_limpiarDatos.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -191,9 +187,7 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(627, 627, 627))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -222,9 +216,7 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
                         .addComponent(nit_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -234,7 +226,7 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
                     .addComponent(Sueldo_show, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sueldo_Gravado_show, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_limpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,14 +340,13 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
     public void genenrar_pdf(String pnit, String pmes){
         conn.Conexion();        
         JasperReport reporte;
-        String path = "src\\Reportes\\reportBoletaPago.jasper";
         
         try {
             Map parametro = new HashMap();
             parametro.put("pnit", pnit);
             parametro.put("pmes", pmes);
             
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/reportBoletaPago.jasper"));
             
             JasperPrint printreport = JasperFillManager.fillReport(reporte, parametro, conn.conex);
             JasperViewer view = new JasperViewer(printreport, false);
@@ -378,7 +369,6 @@ public class boletaPagoFrmI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

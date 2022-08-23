@@ -279,7 +279,6 @@ public class dashboardFrmI extends javax.swing.JPanel {
     public void genenrar_pdf(String pnit){
         conn.Conexion();        
         JasperReport reporte;
-        String path = "src\\Reportes\\reportPatronal.jasper";
         int band = 0;
         
         try {
@@ -297,7 +296,7 @@ public class dashboardFrmI extends javax.swing.JPanel {
                 Map parametro = new HashMap();
                 parametro.put("pnit", pnit);
 
-                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+                reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/reportPatronal.jasper"));
 
                 JasperPrint printreport = JasperFillManager.fillReport(reporte, parametro, conn.conex);
                 JasperViewer view = new JasperViewer(printreport, false);

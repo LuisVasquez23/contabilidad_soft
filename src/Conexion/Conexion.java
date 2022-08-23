@@ -10,9 +10,9 @@ public class Conexion {
     
     public void Conexion(){
 
-        String pathDB = getClass().getResource("/DB/Empleados.db").toString().replace("build", "src").replace("/classes/", "/");
-        
-        String url = "jdbc:sqlite:" + pathDB;    
+//        String pathDB = getClass().getResource("/DB/Empleados.db").toString().replace("build", "src").replace("/classes/", "/");
+//        String pathDB = getClass().getResource("/DB/Empleados.db").toString();
+        String url = "jdbc:sqlite:Empleados.db";    
         
 //        String ruta = "jdbc:sqlite:C:\\Users\\Alejandro\\Desktop\\3 año\\6 ciclo\\MAte\\contabilidad_soft\\src\\DB\\Empleados.db";
 

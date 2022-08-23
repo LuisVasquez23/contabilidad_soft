@@ -42,7 +42,6 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nit_input = new Helpers.TextField();
         btn_buscarEmpleado = new javax.swing.JButton();
@@ -54,9 +53,6 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setText("Nombre:");
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel3.setText("Informacion del empleado");
@@ -130,7 +126,6 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_title)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nit_input, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
@@ -149,9 +144,7 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
                     .addComponent(nit_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(36, 36, 36)
+                .addGap(77, 77, 77)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
@@ -237,13 +230,12 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
      public void genenrar_pdf(String pnit){
         conn.Conexion();        
         JasperReport reporte;
-        String path = "src\\Reportes\\reportCons_Renta.jasper";
         
         try {
             Map parametro = new HashMap();
             parametro.put("pnit", pnit);
             
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/reportCons_Renta.jasper"));
             
             JasperPrint printreport = JasperFillManager.fillReport(reporte, parametro, conn.conex);
             JasperViewer view = new JasperViewer(printreport, false);
@@ -267,7 +259,6 @@ public class ConstanciaRentaJPFrm extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_title;

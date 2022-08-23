@@ -38,7 +38,6 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
         label_title = new javax.swing.JLabel();
         carnet_input = new Helpers.TextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btn_generarPDF = new javax.swing.JButton();
         btn_LimpiarDatos = new javax.swing.JButton();
 
@@ -53,9 +52,6 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel3.setText("Informacion del empleado");
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel4.setText("Nombre:");
 
         btn_generarPDF.setBackground(new java.awt.Color(153, 153, 255));
         btn_generarPDF.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
@@ -87,7 +83,6 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(label_title)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(134, 134, 134)
@@ -104,9 +99,7 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
                 .addComponent(carnet_input, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(40, 40, 40)
+                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_generarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_LimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,13 +124,12 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
      public void genenrar_pdf(String pnit){
         conn.Conexion();        
         JasperReport reporte;
-        String path = "src\\Reportes\\reportConstacia_Laboral.jasper";
         
         try {
             Map parametro = new HashMap();
             parametro.put("pnit", pnit);
             
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/reportConstacia_Laboral.jasper"));
             
             JasperPrint printreport = JasperFillManager.fillReport(reporte, parametro, conn.conex);
             JasperViewer view = new JasperViewer(printreport, false);
@@ -154,7 +146,6 @@ public class ConstanciaSueldoJPFrm extends javax.swing.JPanel {
     private javax.swing.JButton btn_generarPDF;
     private Helpers.TextField carnet_input;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel label_title;
     // End of variables declaration//GEN-END:variables
 }
